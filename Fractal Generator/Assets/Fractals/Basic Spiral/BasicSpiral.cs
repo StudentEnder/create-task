@@ -2,19 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicSpiral : MonoBehaviour
+public class BasicSpiral : RecursiveObjectFractal
 {
+    [Header("Basic Spiral")]
+    public GameObject childObject;
+    public Quaternion childRotation;
+    public Vector3 childScaleMultiplier = Vector3.one;
 
-    public int maxDepth = 1;
-    public GameObject fractalObject;
+    public Transform topTransform;
+    public Transform bottomTransform;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public override void Prepare(RecursiveObjectFractal parent)
     {
-        GameObject fractal = Instantiate(fractalObject, transform);
-        BasicSpiralPiece piece = fractal.GetComponent<BasicSpiralPiece>();
-        piece.SetDepthCountdown(maxDepth);
+        transform.localScale = childScaleMultiplier;
+    }
 
+    public override void CreateChildren()
+    {
+        Instantiate(childObject, topTransform.position, childRotation).GetComponent<BasicSpiral>().Initialize(this);
+        //Instantiate(gameObject, topTransform.position, childRotation, transform).GetComponent<BasicSpiral>().Initialize(this);
     }
 }
