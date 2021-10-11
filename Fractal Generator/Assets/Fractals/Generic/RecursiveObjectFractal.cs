@@ -32,8 +32,22 @@ public abstract class RecursiveObjectFractal : MonoBehaviour
         transform.parent = parent.transform; // sets the gameObject hierarchy to make children the children.
         depth = parent.depth + 1; // increases recursion depth value
         depthCountdown = parent.depthCountdown - 1; // decrements depthCountdown from the parent's value.
+        name = RenameDepth(parent.name, depth);
         Prepare(parent);
         //initialized = true;
+    }
+
+    private static string RenameDepth(string parentString, int depth)
+    {
+        if (depth == 1) return parentString + " Depth: " + depth;
+        string[] splitParentString = parentString.Split(' ');
+        string finalString = "";
+        for (int i = 0; i < splitParentString.Length-1; i++)
+        {
+            finalString += splitParentString[i];
+        }
+        finalString += " " + depth;
+        return finalString;
     }
 
     /// <summary>
