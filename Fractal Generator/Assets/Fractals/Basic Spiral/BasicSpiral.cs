@@ -15,11 +15,12 @@ public class BasicSpiral : RecursiveObjectFractal
     public override void Prepare(RecursiveObjectFractal parent)
     {
         transform.localScale = childScaleMultiplier;
+        transform.localRotation = childRotation;
     }
 
     public override void CreateChildren()
     {
-        Instantiate(childObject, topTransform.position, childRotation).GetComponent<BasicSpiral>().Initialize(this);
+        Instantiate(childObject, topTransform.position, Quaternion.identity).GetComponent<BasicSpiral>().Initialize(this);
         //Instantiate(gameObject, topTransform.position, childRotation, transform).GetComponent<BasicSpiral>().Initialize(this);
     }
 }
