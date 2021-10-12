@@ -8,6 +8,7 @@ public class BasicSpiral : RecursiveObjectFractal
     public GameObject childObject;
     public Quaternion childRotation;
     public Vector3 childScaleMultiplier = Vector3.one;
+    public Vector3 eulerRotationRate;
 
     public Transform topTransform;
     public Transform bottomTransform;
@@ -22,5 +23,10 @@ public class BasicSpiral : RecursiveObjectFractal
     {
         Instantiate(childObject, topTransform.position, Quaternion.identity).GetComponent<BasicSpiral>().Initialize(this);
         //Instantiate(gameObject, topTransform.position, childRotation, transform).GetComponent<BasicSpiral>().Initialize(this);
+    }
+
+    public void Update()
+    {
+        transform.Rotate(eulerRotationRate * Time.deltaTime);
     }
 }
