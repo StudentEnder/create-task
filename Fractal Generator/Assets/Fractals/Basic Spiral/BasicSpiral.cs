@@ -13,7 +13,7 @@ public class BasicSpiral : RecursiveObjectFractal
     public Transform topTransform;
     public Transform bottomTransform;
 
-    public override void Prepare(RecursiveObjectFractal parent)
+    public override void Prepare(ObjectFractal parent)
     {
         transform.localScale = childScaleMultiplier;
         transform.localRotation = childRotation;
