@@ -259,6 +259,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Spiral
       objectReference: {fileID: 0}
+    - target: {fileID: 915604429609882298, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 915604429609882299, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -400,6 +404,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: offsetDirectionAdditive.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1175432704282021913, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_Name
       value: Offset Tester
