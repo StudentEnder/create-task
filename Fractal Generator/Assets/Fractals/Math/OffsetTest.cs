@@ -10,6 +10,8 @@ public class OffsetTest : MonoBehaviour
     public Vector3 offsetDirectionAdditive = Vector3.zero;
     public Vector3 scaleMultiplier = Vector3.one;
 
+    public float scalar = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,7 @@ public class OffsetTest : MonoBehaviour
         for (int depth = 0; depth < maxDepth; depth++)
         {
             GameObject newLine = Instantiate(lineObject, offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive), Quaternion.identity);
-            newLine.transform.localScale = Vector3.right * Scale(depth);
+            newLine.transform.localScale = new Vector3(Scale(depth), newLine.transform.localScale.y , newLine.transform.localScale.z );
         }
     }
 
@@ -30,20 +32,15 @@ public class OffsetTest : MonoBehaviour
         float offset = 0f;
         for (int depth = 0; depth < currentDepth; depth++)
         {
-            offset += 1f / Mathf.Pow(2, depth);
+            offset += Scale(depth + 1);
         }
 
-        return offset;
+        return offset + 1 - scalar - scalar * Scale(currentDepth);
     }
 
     public float Scale(int currentDepth)
     {
-        float scale = 0f;
-        for (int depth = 0; depth < currentDepth; depth++)
-        {
-            // TODO inverse scale for depth
-        }
-
+        float scale = Mathf.Pow(scalar, currentDepth);
         return scale;
     }
 }
