@@ -35,7 +35,7 @@ public class OffsetTest : MonoBehaviour
             offset += Scale(depth + 1);
         }
 
-        return offset + 1 - scalar - scalar * Scale(currentDepth);
+        return offset + 1 - scalar - .5f * Scale(currentDepth);
     }
 
     public float Scale(int currentDepth)
