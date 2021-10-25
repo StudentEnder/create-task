@@ -20,7 +20,7 @@ public class OffsetTest : MonoBehaviour
 
     public void SpawnLines()
     {
-        for (int depth = 0; depth < maxDepth; depth++)
+        for (int depth = 0; depth <= maxDepth; depth++)
         {
             GameObject newLine = Instantiate(lineObject, offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive), Quaternion.identity);
             newLine.transform.localScale = new Vector3(Scale(depth), newLine.transform.localScale.y , newLine.transform.localScale.z );
