@@ -22,7 +22,11 @@ public class OffsetTest : MonoBehaviour
     {
         for (int depth = 0; depth <= maxDepth; depth++)
         {
-            GameObject newLine = Instantiate(lineObject, offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive), Quaternion.identity);
+            //GameObject newLine = Instantiate(lineObject, transform.position + offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive), Quaternion.identity, transform);
+
+            GameObject newLine = Instantiate(lineObject, transform);
+            newLine.transform.localPosition = offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive);
+            newLine.transform.localRotation = Quaternion.identity;
             newLine.transform.localScale = new Vector3(Scale(depth), newLine.transform.localScale.y , newLine.transform.localScale.z );
         }
     }
