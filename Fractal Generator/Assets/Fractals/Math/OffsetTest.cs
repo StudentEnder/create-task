@@ -36,7 +36,7 @@ public class OffsetTest : MonoBehaviour
         }
 
         // Final offset to account for placement being from the center of the object.
-        return offset + 1 - scalar - (.5f * Scale(currentDepth));
+        return offset +.5f - (.5f * Scale(currentDepth));
     }
 
     public float Scale(int currentDepth)
