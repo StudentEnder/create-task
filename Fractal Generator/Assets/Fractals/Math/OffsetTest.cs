@@ -10,6 +10,9 @@ public class OffsetTest : MonoBehaviour
     public Vector3 offsetDirectionAdditive = Vector3.zero;
     public Vector3 scaleMultiplier = Vector3.one;
 
+    // amount of rotation applied each depth.
+    public Quaternion rotationAmount;
+
     public float scalar = 1f;
 
     // Start is called before the first frame update
@@ -25,10 +28,16 @@ public class OffsetTest : MonoBehaviour
             //GameObject newLine = Instantiate(lineObject, transform.position + offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive), Quaternion.identity, transform);
 
             GameObject newLine = Instantiate(lineObject, transform);
-            newLine.transform.localPosition = offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive);
+            newLine.transform.localPosition = (offsetDirectionMultiplier * Offset(depth)) + (depth * offsetDirectionAdditive);
             newLine.transform.localRotation = Quaternion.identity;
             newLine.transform.localScale = new Vector3(Scale(depth), newLine.transform.localScale.y , newLine.transform.localScale.z );
         }
+    }
+
+    public void QuatTest()
+    {
+        Quaternion quaternion = Quaternion.identity;
+        Debug.Log("Original: " + quaternion);
     }
 
     public float Offset(int currentDepth)
