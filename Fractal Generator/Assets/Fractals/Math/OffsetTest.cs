@@ -46,13 +46,23 @@ public class OffsetTest : MonoBehaviour
         for (int depth = 0; depth < currentDepth; depth++)
         {
             offset += Scale(depth + 1);
-        }
+        } 
 
         // Final offset to account for placement being from the center of the object.
         return offset +.5f - (.5f * Scale(currentDepth));
     }
 
-    public float Scale(int currentDepth)
+    public float Offset2(int currentDepth)
+    {
+        float offset = 0f;
+        for (int depth = 0; depth <= currentDepth; depth++)
+        {
+            offset += Scale(depth + 1) + Scale(depth - (3f/5));
+        }
+        return offset;
+    }
+
+    public float Scale(float currentDepth)
     {
         float scale = Mathf.Pow(scalar, currentDepth);
         return scale;
