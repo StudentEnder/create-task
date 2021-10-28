@@ -4,6 +4,7 @@ public class OffsetTest : MonoBehaviour
 {
     public GameObject lineObject;
 
+    public int minDepth = 0;
     public int maxDepth = 1;
 
     public Vector3 offsetDirectionMultiplier = Vector3.right;
@@ -18,12 +19,12 @@ public class OffsetTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnLines();
+        SpawnLines(minDepth, maxDepth);
     }
 
     public void SpawnLines()
     {
-        for (int depth = 0; depth <= maxDepth; depth++)
+        for (int depth = minDepth; depth <= maxDepth; depth++)
         {
             //GameObject newLine = Instantiate(lineObject, transform.position + offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive), Quaternion.identity, transform);
 
