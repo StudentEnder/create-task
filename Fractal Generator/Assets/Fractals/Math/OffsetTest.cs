@@ -40,6 +40,7 @@ public class OffsetTest : MonoBehaviour
         Debug.Log("Original: " + quaternion);
     }
 
+    /* Old Offset function, optimized in new function
     public float Offset(int currentDepth)
     {
         float offset = 0f;
@@ -50,14 +51,14 @@ public class OffsetTest : MonoBehaviour
 
         // Final offset to account for placement being from the center of the object.
         return offset +.5f - (.5f * Scale(currentDepth));
-    }
-
-    public float Offset2(int currentDepth)
+    } */
+    
+    public float Offset(int currentDepth)
     {
         float offset = 0f;
-        for (int depth = 0; depth <= currentDepth; depth++)
+        for (int depth = 0; depth < currentDepth; depth++)
         {
-            offset += Scale(depth + 1) + Scale(depth - (3f/5));
+            offset += .5f* (Scale(depth) + Scale(depth+1));
         }
         return offset;
     }
