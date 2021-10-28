@@ -68,4 +68,9 @@ public class OffsetTest : MonoBehaviour
         float scale = Mathf.Pow(scalar, currentDepth);
         return scale;
     }
+    public Quaternion Rotate(float currentDepth)
+    {
+
+        return Quaternion.identity;
+    }
 }
