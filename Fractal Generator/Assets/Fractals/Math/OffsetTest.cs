@@ -4,9 +4,9 @@ public class OffsetTest : MonoBehaviour
 {
     public GameObject lineObject;
 
-    [Header("Depth range:")]
-    [Tooltip("Starting depth to spawn objects.")]
-    public int minDepth = 0;
+    [Header("Depth:")]
+    // [Tooltip("Starting depth to spawn objects.")]
+    // public int minDepth = 0;
     [Tooltip("Ending depth to spawn objects.")]
     public int maxDepth = 1;
 
@@ -25,20 +25,19 @@ public class OffsetTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnLines(minDepth, maxDepth);
+        SpawnLines(maxDepth);
     }
 
     /// <summary>
     /// Instantiates fractal objects up to specified depth.
     /// </summary>
-    /// <param name="minDepth"></param>
     /// <param name="maxDepth"></param>
-    public void SpawnLines(int minDepth, int maxDepth)
+    public void SpawnLines(int maxDepth)
     {
-        for (int depth = minDepth; depth <= maxDepth; depth++)
+        for (int depth = 0; depth <= maxDepth; depth++)
         {
             GameObject newLine = Instantiate(lineObject, transform);
-            newLine.transform.localPosition = (offsetDirectionMultiplier * Offset(depth)) + (depth * offsetDirectionAdditive);
+            newLine.transform.localPosition = (Offset(depth) * offsetDirectionMultiplier)  + (depth * offsetDirectionAdditive);
             newLine.transform.localRotation = Quaternion.identity;
             newLine.transform.localScale = new Vector3(Scale(depth), newLine.transform.localScale.y , newLine.transform.localScale.z );
         }
