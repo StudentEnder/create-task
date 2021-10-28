@@ -4,17 +4,23 @@ public class OffsetTest : MonoBehaviour
 {
     public GameObject lineObject;
 
+    [Header("Depth range:")]
+    [Tooltip("Starting depth to spawn objects.")]
     public int minDepth = 0;
+    [Tooltip("Ending depth to spawn objects.")]
     public int maxDepth = 1;
 
+    [Header("Scaling:")]
+    [Tooltip("Scalar applied to each depth relative to prior depth.")]
+    public float scalar = 1f;
+
+    [Header("Offset values:")]
     public Vector3 offsetDirectionMultiplier = Vector3.right;
     public Vector3 offsetDirectionAdditive = Vector3.zero;
     public Vector3 scaleMultiplier = Vector3.one;
 
-    // amount of rotation applied each depth.
+    [Header("Rotation values:")] 
     public Quaternion rotationAmount;
-
-    public float scalar = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +28,15 @@ public class OffsetTest : MonoBehaviour
         SpawnLines(minDepth, maxDepth);
     }
 
-    public void SpawnLines()
+    /// <summary>
+    /// Instantiates fractal objects up to specified depth.
+    /// </summary>
+    /// <param name="minDepth"></param>
+    /// <param name="maxDepth"></param>
+    public void SpawnLines(int minDepth, int maxDepth)
     {
         for (int depth = minDepth; depth <= maxDepth; depth++)
         {
-            //GameObject newLine = Instantiate(lineObject, transform.position + offsetDirectionMultiplier * Offset(depth) + (depth * offsetDirectionAdditive), Quaternion.identity, transform);
-
             GameObject newLine = Instantiate(lineObject, transform);
             newLine.transform.localPosition = (offsetDirectionMultiplier * Offset(depth)) + (depth * offsetDirectionAdditive);
             newLine.transform.localRotation = Quaternion.identity;
@@ -41,7 +50,18 @@ public class OffsetTest : MonoBehaviour
         Debug.Log("Original: " + quaternion);
     }
 
-    /* Old Offset function, optimized in new function
+    /// <summary>
+    /// Returns scaling of object at specified depth.
+    /// </summary>
+    /// <param name="currentDepth"></param>
+    /// <returns></returns>
+    public float Scale(float currentDepth)
+    {
+        float scale = Mathf.Pow(scalar, currentDepth);
+        return scale;
+    }
+
+    /*  Old Offset function, optimized in new function
     public float Offset(int currentDepth)
     {
         float offset = 0f;
@@ -54,21 +74,26 @@ public class OffsetTest : MonoBehaviour
         return offset +.5f - (.5f * Scale(currentDepth));
     } */
     
+    /// <summary>
+    /// Returns centered position of object at specified depth.
+    /// </summary>
+    /// <param name="currentDepth"></param>
+    /// <returns></returns>
     public float Offset(int currentDepth)
     {
         float offset = 0f;
         for (int depth = 0; depth < currentDepth; depth++)
         {
-            offset += .5f* (Scale(depth) + Scale(depth+1));
+            offset += .5f * (Scale(depth) + Scale(depth+1));
         }
         return offset;
     }
 
-    public float Scale(float currentDepth)
-    {
-        float scale = Mathf.Pow(scalar, currentDepth);
-        return scale;
-    }
+    /// <summary>
+    /// Returns rotation of object at specified depth.
+    /// </summary>
+    /// <param name="currentDepth"></param>
+    /// <returns></returns>
     public Quaternion Rotate(float currentDepth)
     {
 
