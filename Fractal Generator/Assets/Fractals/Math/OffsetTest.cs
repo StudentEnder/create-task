@@ -84,7 +84,7 @@ public class OffsetTest : MonoBehaviour
         float offset = 0f;
         for (int depth = 0; depth < currentDepth; depth++)
         {
-            offset += .5f * (Scale(depth) + Scale(depth+1));
+            offset += .5f * (Scale(depth) + Scale(depth++));
         }
         return offset;
     }
