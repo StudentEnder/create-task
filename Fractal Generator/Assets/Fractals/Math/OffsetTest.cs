@@ -4,6 +4,8 @@ public class OffsetTest : MonoBehaviour
 {
     public GameObject lineObject;
 
+
+
     [Header("Depth:")]
     // [Tooltip("Starting depth to spawn objects.")]
     // public int minDepth = 0;
@@ -21,6 +23,8 @@ public class OffsetTest : MonoBehaviour
 
     [Header("Rotation values:")] 
     public Quaternion rotationAmount;
+
+
 
     // Start is called before the first frame update
     void Start()
