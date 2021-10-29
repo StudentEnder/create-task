@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class OffsetTest : MonoBehaviour
@@ -24,6 +25,8 @@ public class OffsetTest : MonoBehaviour
     [Header("Rotation values:")] 
     public Quaternion rotationAmount;
 
+
+    public delegate float DepthFunction(int depth);
 
 
     // Start is called before the first frame update
@@ -84,11 +87,21 @@ public class OffsetTest : MonoBehaviour
     /// <returns></returns>
     public float Offset(int currentDepth)
     {
+        return Summation(0, currentDepth, (int depth) =>
+       {
+           return .5f * (Scale(depth) + Scale(depth + 1));
+       });
+    }
+
+    public float Summation(int start, int max, DepthFunction f)
+    {
         float offset = 0f;
-        for (int depth = 0; depth < currentDepth; depth++)
+        for (int depth = 0; depth < max; depth++)
         {
-            offset += .5f * (Scale(depth) + Scale(depth++));
+            offset += f(depth);
         }
+
+
         return offset;
     }
 
