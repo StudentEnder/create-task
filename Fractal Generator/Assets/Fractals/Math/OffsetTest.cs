@@ -22,8 +22,8 @@ public class OffsetTest : MonoBehaviour
     public Vector3 offsetDirectionAdditive = Vector3.zero;
     public Vector3 scaleMultiplier = Vector3.one;
 
-    [Header("Rotation values:")] 
-    public Quaternion rotationAmount;
+    // [Header("Rotation values:")] 
+    // public Quaternion rotationAmount;
 
 
 
@@ -50,12 +50,6 @@ public class OffsetTest : MonoBehaviour
             newLine.transform.localRotation = Quaternion.identity;
             newLine.transform.localScale = new Vector3(Scale(depth), newLine.transform.localScale.y , newLine.transform.localScale.z );
         }
-    }
-
-    public void QuatTest()
-    {
-        Quaternion quaternion = Quaternion.identity;
-        Debug.Log("Original: " + quaternion);
     }
 
     /// <summary>
