@@ -70,10 +70,12 @@ public class OffsetTest : MonoBehaviour
     /// <returns></returns>
     public float Offset(int currentDepth)
     {
-        return Summation(0, currentDepth, (int depth) =>
-       {
-           return .5f * (Scale(depth) + Scale(depth + 1));
-       });
+        float offset = 0;
+        for (int depth = 0; depth < currentDepth; depth++)
+        {
+            offset += .5f * (Scale(depth) + Scale(depth + 1));
+        }
+        return offset;
     }
 
     /// <summary>

@@ -216,87 +216,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1530476976
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: depthCountdown
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: childRotation.w
-      value: 0.9659258
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: childRotation.x
-      value: 0.25881904
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: childRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: childRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: eulerRotationRate.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: childScaleMultiplier.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: childScaleMultiplier.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882296, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: childScaleMultiplier.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882298, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_Name
-      value: Basic Spiral
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882298, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882299, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882299, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882299, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882299, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882299, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882299, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915604429609882299, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2b01f3ee31c32d74b88430d1584f837d, type: 3}
 --- !u!1 &2028016428
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_LocalScale.x
