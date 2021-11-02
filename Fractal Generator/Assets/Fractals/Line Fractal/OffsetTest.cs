@@ -76,17 +76,6 @@ public class OffsetTest : MonoBehaviour
        });
     }
 
-    public float Summation(int start, int max, DepthFunction f)
-    {
-        float sum = 0f;
-        for (int depth = start; depth < max; depth++)
-        {
-            sum += f(depth);
-        }
-
-        return sum;
-    }
-
     /// <summary>
     /// Returns rotation of object at specified depth.
     /// </summary>
