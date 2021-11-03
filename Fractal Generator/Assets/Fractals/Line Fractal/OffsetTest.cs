@@ -58,9 +58,7 @@ public class OffsetTest : MonoBehaviour
     /// <returns></returns>
     public Quaternion Rotation(int currentDepth)
     {
-        //return MathUtils.QuatPow(rotationModifier, currentDepth);
-
-        return Quaternion.identity;
+        return MathUtils.QuatPow(rotationModifier, currentDepth);
     }
 
     /// <summary>
