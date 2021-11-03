@@ -5,7 +5,7 @@ public class OffsetTest : MonoBehaviour
 {
     public GameObject lineObject;
 
-
+    // Variables
 
     [Header("Depth:")]
     // [Tooltip("Starting depth to spawn objects.")]
@@ -22,12 +22,11 @@ public class OffsetTest : MonoBehaviour
     public Vector3 offsetDirectionAdditive = Vector3.zero;
     public Vector3 scaleMultiplier = Vector3.one;
 
-    // [Header("Rotation values:")] 
-    // public Quaternion rotationAmount;
+    [Header("Rotation values:")] 
+    public Quaternion rotationModifier;
 
-
-
-    public delegate float DepthFunction(int depth);
+    // remove?
+    // public delegate float DepthFunction(int depth);
 
 
 
@@ -46,45 +45,61 @@ public class OffsetTest : MonoBehaviour
         for (int depth = 0; depth <= maxDepth; depth++)
         {
             GameObject newLine = Instantiate(lineObject, transform);
-            newLine.transform.localPosition = (Offset(depth) * offsetDirectionMultiplier)  + (depth * offsetDirectionAdditive);
-            newLine.transform.localRotation = Quaternion.identity;
+            newLine.transform.localPosition = Offset(depth) + (depth * offsetDirectionAdditive);
+            newLine.transform.localRotation = Rotation(depth);
             newLine.transform.localScale = new Vector3(Scale(depth), newLine.transform.localScale.y , newLine.transform.localScale.z );
         }
     }
-
+    
     /// <summary>
-    /// Returns scaling of object at specified depth.
+    /// Returns rotation of object for specified depth.
     /// </summary>
     /// <param name="currentDepth"></param>
     /// <returns></returns>
-    public float Scale(float currentDepth)
+    public Quaternion Rotation(int currentDepth)
+    {
+        //return MathUtils.QuatPow(rotationModifier, currentDepth);
+
+        return Quaternion.identity;
+    }
+
+    /// <summary>
+    /// Returns scale of object at specified depth.
+    /// </summary>
+    /// <param name="currentDepth"></param>
+    /// <returns></returns>
+    public float Scale(int currentDepth)
     {
         float scale = Mathf.Pow(scalar, currentDepth);
         return scale;
     }
-    
+
+    /// <summary>
+    /// Returns vector of object at specified depth.
+    /// </summary>
+    /// <param name="currentDepth"></param>
+    /// <returns></returns>
+    public Vector3 Vector(int currentDepth)
+    {
+        Vector3 vector = Vector3.right;
+        vector = Rotation(currentDepth) * vector;
+        vector = Scale(currentDepth) * vector;
+
+        return vector;
+    }
+
     /// <summary>
     /// Returns centered position of object at specified depth.
     /// </summary>
     /// <param name="currentDepth"></param>
     /// <returns></returns>
-    public float Offset(int currentDepth)
+    public Vector3 Offset(int currentDepth)
     {
-        float offset = 0;
+        Vector3 offset = Vector3.zero;
         for (int depth = 0; depth < currentDepth; depth++)
         {
-            offset += .5f * (Scale(depth) + Scale(depth + 1));
+            offset += .5f * (Vector(depth) + Vector(depth + 1));
         }
         return offset;
-    }
-
-    /// <summary>
-    /// Returns rotation of object at specified depth.
-    /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
-    public Quaternion Rotate(float currentDepth)
-    {
-        return Quaternion.identity;
     }
 }
