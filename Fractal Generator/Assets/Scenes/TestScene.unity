@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -339,53 +339,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: maxDepth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: minDepth
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: scaleMultiplier.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: rotationModifier.w
-      value: 0.9659258
-      objectReference: {fileID: 0}
-    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: rotationModifier.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: rotationModifier.z
-      value: 0.25881904
-      objectReference: {fileID: 0}
-    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: offsetDirectionAdditive.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1175432704282021913, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_Name
       value: Offset Tester
       objectReference: {fileID: 0}
-    - target: {fileID: 1175432704282021913, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -393,6 +353,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}

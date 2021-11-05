@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class OffsetTest : MonoBehaviour
+public class LineFractal : MonoBehaviour
 {
     public GameObject lineObject;
 
@@ -47,7 +47,8 @@ public class OffsetTest : MonoBehaviour
             GameObject newLine = Instantiate(lineObject, transform);
             newLine.transform.localPosition = Offset(depth) + (depth * offsetDirectionAdditive);
             newLine.transform.localRotation = Rotation(depth);
-            newLine.transform.localScale = new Vector3(Scale(depth), newLine.transform.localScale.y , newLine.transform.localScale.z );
+            newLine.GetComponent<LengthCapsule>().SetLength(Scale(depth));
+            // newLine.transform.localScale = 
         }
     }
     
