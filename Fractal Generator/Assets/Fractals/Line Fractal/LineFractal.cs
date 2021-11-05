@@ -15,7 +15,7 @@ public class LineFractal : MonoBehaviour
 
     [Header("Scaling:")]
     [Tooltip("Scalar applied to each depth relative to prior depth.")]
-    public float scalar = 1f;
+    public Vector3 scalar = Vector3.one;
 
     [Header("Offset values:")]
     public Vector3 offsetDirectionMultiplier = Vector3.right;
@@ -47,7 +47,7 @@ public class LineFractal : MonoBehaviour
             GameObject newLine = Instantiate(lineObject, transform);
             newLine.transform.localPosition = Offset(depth) + (depth * offsetDirectionAdditive);
             newLine.transform.localRotation = Rotation(depth);
-            newLine.GetComponent<LengthCapsule>().SetLength(Scale(depth));
+            newLine.GetComponent<LengthCapsule>().SetScale(Scale(depth));
             // newLine.transform.localScale = 
         }
     }
@@ -67,10 +67,9 @@ public class LineFractal : MonoBehaviour
     /// </summary>
     /// <param name="currentDepth"></param>
     /// <returns></returns>
-    public float Scale(int currentDepth)
+    public Vector3 Scale(int currentDepth)
     {
-        float scale = Mathf.Pow(scalar, currentDepth);
-        return scale;
+        return MathUtils.Vector3Pow(scalar, currentDepth);
     }
 
     /// <summary>
@@ -82,7 +81,7 @@ public class LineFractal : MonoBehaviour
     {
         Vector3 vector = Vector3.right;
         vector = Rotation(currentDepth) * vector;
-        vector = Scale(currentDepth) * vector;
+        vector = MathUtils.Vector3ComponentMultiply(Scale(currentDepth), vector);
 
         return vector;
     }
