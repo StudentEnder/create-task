@@ -34,6 +34,7 @@ public class LineFractal : MonoBehaviour
     void Start()
     {
         SpawnLines(maxDepth);
+        // MathUtilsTests.Test();
     }
 
     /// <summary>

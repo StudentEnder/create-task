@@ -9,7 +9,7 @@ public static class MathUtils
         Quaternion rotation = Quaternion.identity;
         for (int i = 0; i < power; i++)
         {
-            rotation = rotation * rotationModifier;
+            rotation *= rotationModifier;
         }
         return rotation;
     }
@@ -30,6 +30,19 @@ public static class MathUtils
         for (int i = 0; i < 3; i++)
         {
             output[i] = a[i] * b[i];
+        }
+        return output;
+    }
+
+    public static Vector3 Vector3ComponentMultiply(params Vector3[] vectors)
+    {
+        Vector3 output = vectors[0];
+        for (int i = 1; i < vectors.Length; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                output[j] *= vectors[i][j];
+            }
         }
         return output;
     }
