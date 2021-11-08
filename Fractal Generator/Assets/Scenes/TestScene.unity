@@ -339,6 +339,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: maxDepth
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: lengthScalar
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: rotationModifier.w
+      value: 0.92356294
+      objectReference: {fileID: 0}
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: rotationModifier.x
+      value: 0.024184348
+      objectReference: {fileID: 0}
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: rotationModifier.y
+      value: -0.010017485
+      objectReference: {fileID: 0}
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: rotationModifier.z
+      value: 0.38255233
+      objectReference: {fileID: 0}
     - target: {fileID: 1175432704282021913, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_Name
       value: Offset Tester

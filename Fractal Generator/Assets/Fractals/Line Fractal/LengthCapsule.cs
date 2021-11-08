@@ -8,13 +8,17 @@ public class LengthCapsule : MonoBehaviour
     [SerializeField] private Transform topCap;
     [SerializeField] private Transform bottomCap;
 
-    public void SetScale(Vector3 scale)
+    public void SetLength(float length)
     {
-        Debug.Log(scale);
-        scale *= .5f;
-        cylinder.localScale = scale;
+        length *= .5f;
+        cylinder.localScale = new Vector3(cylinder.localScale.x, length, cylinder.localScale.z);
 
-        topCap.localPosition = new Vector3(scale.x, topCap.localPosition.y, topCap.localPosition.z);
-        bottomCap.localPosition = new Vector3(-scale.x, bottomCap.localPosition.y, bottomCap.localPosition.z);
+        topCap.localPosition = new Vector3(length, topCap.localPosition.y, topCap.localPosition.z);
+        bottomCap.localPosition = new Vector3(-length, bottomCap.localPosition.y, bottomCap.localPosition.z);
+    }
+
+    public void SetRadius(float radius)
+    {
+
     }
 }

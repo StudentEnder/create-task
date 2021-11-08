@@ -14,8 +14,10 @@ public class LineFractal : MonoBehaviour
     public int maxDepth = 1;
 
     [Header("Scaling:")]
-    [Tooltip("Scalar applied to each depth relative to prior depth.")]
-    public Vector3 scalar = Vector3.one;
+    [Tooltip("Length scalar applied to each depth relative to prior depth.")]
+    public float lengthScalar = 1f;
+    [Tooltip("Radius scalar applied to each depth relative to prior depth.")]
+    public float radiusScalar = 1f;
 
     [Header("Offset values:")]
     public Vector3 offsetDirectionMultiplier = Vector3.right;
@@ -48,7 +50,7 @@ public class LineFractal : MonoBehaviour
             GameObject newLine = Instantiate(lineObject, transform);
             newLine.transform.localPosition = Offset(depth) + (depth * offsetDirectionAdditive);
             newLine.transform.localRotation = Rotation(depth);
-            newLine.GetComponent<LengthCapsule>().SetScale(Scale(depth));
+            newLine.GetComponent<LengthCapsule>().SetLength(Length(depth));
             // newLine.transform.localScale = 
         }
     }
@@ -64,17 +66,17 @@ public class LineFractal : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns scale of object at specified depth.
+    /// Returns length of object at specified depth.
     /// </summary>
     /// <param name="currentDepth"></param>
     /// <returns></returns>
-    public Vector3 Scale(int currentDepth)
+    public float Length(int currentDepth)
     {
-        return MathUtils.Vector3Pow(scalar, currentDepth);
+        return Mathf.Pow(lengthScalar, currentDepth);
     }
 
     /// <summary>
-    /// Returns vector of object at specified depth.
+    /// Returns vector of an object at specified depth, combining direction and magnitude of the object.
     /// </summary>
     /// <param name="currentDepth"></param>
     /// <returns></returns>
@@ -82,7 +84,7 @@ public class LineFractal : MonoBehaviour
     {
         Vector3 vector = Vector3.right;
         vector = Rotation(currentDepth) * vector;
-        vector = MathUtils.Vector3ComponentMultiply(Scale(currentDepth), vector);
+        vector *= Length(currentDepth);
 
         return vector;
     }

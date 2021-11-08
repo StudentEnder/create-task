@@ -14,6 +14,11 @@ public static class MathUtils
         return rotation;
     }
 
+    public static Vector2 Vector2Pow(Vector2 vector, int power)
+    {
+        return new Vector2(Mathf.Pow(vector.x, power), Mathf.Pow(vector.y, power));
+    }
+
     public static Vector3 Vector3Pow(Vector3 vector, int power)
     {
         return new Vector3(Mathf.Pow(vector.x, power), Mathf.Pow(vector.y, power), Mathf.Pow(vector.z, power));
