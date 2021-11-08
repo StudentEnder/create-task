@@ -24,16 +24,6 @@ public static class MathUtils
         return new Vector3(Mathf.Pow(vector.x, power.x), Mathf.Pow(vector.y, power.y), Mathf.Pow(vector.z, power.z));
     }
 
-    public static Vector3 Vector3ComponentMultiply(Vector3 a, Vector3 b)
-    {
-        Vector3 output = Vector3.zero;
-        for (int i = 0; i < 3; i++)
-        {
-            output[i] = a[i] * b[i];
-        }
-        return output;
-    }
-
     public static Vector3 Vector3ComponentMultiply(params Vector3[] vectors)
     {
         Vector3 output = vectors[0];
