@@ -341,31 +341,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: maxDepth
-      value: 150
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: lengthScalar
-      value: 0.75
+      value: 0.99
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: radiusScalar
-      value: 0.75
+      value: 0.99
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: rotationModifier.w
-      value: 0.92356294
+      value: 0.99110514
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: rotationModifier.x
-      value: 0.024184348
+      value: 0.025953002
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: rotationModifier.y
-      value: -0.010017485
+      value: -0.0034167783
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: rotationModifier.z
-      value: 0.38255233
+      value: 0.13048148
       objectReference: {fileID: 0}
     - target: {fileID: 1175432704282021913, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_Name
