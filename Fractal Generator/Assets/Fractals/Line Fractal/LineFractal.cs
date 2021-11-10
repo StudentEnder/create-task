@@ -47,10 +47,10 @@ public class LineFractal : MonoBehaviour
     {
         for (int depth = 0; depth <= maxDepth; depth++)
         {
-            GameObject newLine = Instantiate(lineObject, transform);
+            LengthCapsule newLine = Instantiate(lineObject, transform).GetComponent<LengthCapsule>();
             newLine.transform.localPosition = Offset(depth) + (depth * offsetDirectionAdditive);
             newLine.transform.localRotation = Rotation(depth);
-            newLine.GetComponent<LengthCapsule>().SetLength(Length(depth));
+            newLine.SetLength(Length(depth));
             // newLine.transform.localScale = 
         }
     }
