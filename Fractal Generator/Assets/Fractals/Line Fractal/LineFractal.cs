@@ -51,6 +51,7 @@ public class LineFractal : MonoBehaviour
             newLine.transform.localPosition = Offset(depth) + (depth * offsetDirectionAdditive);
             newLine.transform.localRotation = Rotation(depth);
             newLine.SetLength(Length(depth));
+            newLine.SetRadius(Radius(depth));
             // newLine.transform.localScale = 
         }
     }
@@ -73,6 +74,16 @@ public class LineFractal : MonoBehaviour
     public float Length(int currentDepth)
     {
         return Mathf.Pow(lengthScalar, currentDepth);
+    }
+
+    /// <summary>
+    /// Returns radius of object at specified depth.
+    /// </summary>
+    /// <param name="currentDepth"></param>
+    /// <returns></returns>
+    public float Radius(int currentDepth)
+    {
+        return Mathf.Pow(radiusScalar, currentDepth);
     }
 
     /// <summary>

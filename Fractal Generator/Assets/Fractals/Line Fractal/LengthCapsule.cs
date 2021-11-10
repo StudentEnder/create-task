@@ -19,6 +19,9 @@ public class LengthCapsule : MonoBehaviour
 
     public void SetRadius(float radius)
     {
+        cylinder.localScale = new Vector3(radius, cylinder.localScale.y, radius);
 
+        topCap.localScale = new Vector3(radius, radius, radius);
+        bottomCap.localScale = new Vector3(radius, radius, radius);
     }
 }
