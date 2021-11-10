@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineObject: {fileID: 5751584903714172236, guid: 2e2075abef1eb3d4baaa573f9ed557ed, type: 3}
-  maxDepth: 50
-  scalar: 0.5
+  maxDepth: 100
+  lengthScalar: 0.75
+  radiusScalar: 0.75
   offsetDirectionMultiplier: {x: 1, y: 0, z: 0}
   offsetDirectionAdditive: {x: 0, y: 0, z: 0}
   scaleMultiplier: {x: 1, y: 1, z: 1}
