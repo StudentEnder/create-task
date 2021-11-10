@@ -27,16 +27,10 @@ public class LineFractal : MonoBehaviour
     [Header("Rotation values:")] 
     public Quaternion rotationModifier;
 
-    // remove?
-    // public delegate float DepthFunction(int depth);
-
-
-
     // Start is called before the first frame update
     void Start()
     {
         SpawnLines(maxDepth);
-        // MathUtilsTests.Test();
     }
 
     /// <summary>
