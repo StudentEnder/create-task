@@ -19,12 +19,8 @@ public class LineFractal : MonoBehaviour
     [Tooltip("Radius scalar applied to each depth relative to prior depth.")]
     public float radiusScalar = 1f;
 
-    [Header("Offset values:")]
-    public Vector3 offsetDirectionMultiplier = Vector3.right;
-    public Vector3 offsetDirectionAdditive = Vector3.zero;
-    public Vector3 scaleMultiplier = Vector3.one;
-
-    [Header("Rotation values:")] 
+    [Header("Rotation values:")]
+    [Tooltip("Rotation applied to each depth relative to prior depth.")]
     public Quaternion rotationModifier;
 
     // Start is called before the first frame update
@@ -42,11 +38,10 @@ public class LineFractal : MonoBehaviour
         for (int depth = 0; depth <= maxDepth; depth++)
         {
             LengthCapsule newLine = Instantiate(lineObject, transform).GetComponent<LengthCapsule>();
-            newLine.transform.localPosition = Offset(depth) + (depth * offsetDirectionAdditive);
+            newLine.transform.localPosition = Offset(depth);
             newLine.transform.localRotation = Rotation(depth);
             newLine.SetLength(Length(depth));
             newLine.SetRadius(Radius(depth));
-            // newLine.transform.localScale = 
         }
     }
     
