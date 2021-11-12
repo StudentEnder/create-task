@@ -340,32 +340,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: maxDepth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
+      propertyPath: minDepth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: lengthScalar
-      value: 0.99
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: radiusScalar
-      value: 0.99
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: rotationModifier.w
-      value: 0.99110514
+      value: 0.97781247
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: rotationModifier.x
-      value: 0.025953002
+      value: 0.025604924
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: rotationModifier.y
-      value: -0.0034167778
+      value: -0.0054424945
       objectReference: {fileID: 0}
     - target: {fileID: -8239979342156311655, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: rotationModifier.z
-      value: 0.13048147
+      value: 0.20784046
       objectReference: {fileID: 0}
     - target: {fileID: 1175432704282021913, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_Name
-      value: Offset Tester
+      value: Line Fractal
       objectReference: {fileID: 0}
     - target: {fileID: 5356879051420422287, guid: 28fc8b36406a87f44b45c1724dacedc2, type: 3}
       propertyPath: m_RootOrder

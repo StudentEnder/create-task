@@ -8,8 +8,8 @@ public class LineFractal : MonoBehaviour
     // Variables
 
     [Header("Depth:")]
-    // [Tooltip("Starting depth to spawn objects.")]
-    // public int minDepth = 0;
+    [Tooltip("Starting depth to spawn objects.")]
+    public int minDepth = 0;
     [Tooltip("Ending depth to spawn objects.")]
     public int maxDepth = 1;
 
@@ -35,7 +35,7 @@ public class LineFractal : MonoBehaviour
     /// <param name="maxDepth"></param>
     public void SpawnLines(int maxDepth)
     {
-        for (int depth = 0; depth <= maxDepth; depth++)
+        for (int depth = minDepth; depth < maxDepth; depth++)
         {
             LengthCapsule newLine = Instantiate(lineObject, transform).GetComponent<LengthCapsule>();
             newLine.transform.localPosition = Offset(depth);
