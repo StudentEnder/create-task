@@ -18,7 +18,13 @@ public static class MathUtils
     {
         return new Vector2(Mathf.Pow(vector.x, power), Mathf.Pow(vector.y, power));
     }
-
+    
+    /// <summary>
+    /// Applies power to each vector component.
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <param name="power"></param>
+    /// <returns></returns>
     public static Vector3 Vector3Pow(Vector3 vector, int power)
     {
         return new Vector3(Mathf.Pow(vector.x, power), Mathf.Pow(vector.y, power), Mathf.Pow(vector.z, power));

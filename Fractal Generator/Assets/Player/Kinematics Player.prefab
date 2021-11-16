@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2979284279778088534}
   - component: {fileID: 2741563019379653490}
   m_Layer: 0
-  m_Name: Physics Player
+  m_Name: Kinematics Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
