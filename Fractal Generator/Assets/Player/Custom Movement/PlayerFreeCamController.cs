@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerFreeCamController : MonoBehaviour
 {
 
-    private float verticalInputAxis = 0f;
     private float horizontalInputAxis = 0f;
+    private float verticalInputAxis = 0f;
 
     public float maxMoveSpeed = 10f;
 
@@ -24,14 +25,15 @@ public class PlayerFreeCamController : MonoBehaviour
         Move();
     }
 
-    private void Move()
-    {
-
-    }
-
     private void CaptureInputs()
     {
-        horizontalInputAxis = Input.GetAxisRaw("Vertical");
-        verticalInputAxis = Input.GetAxisRaw("Horizontal");
+        verticalInputAxis = Input.GetAxisRaw("Vertical");
+        horizontalInputAxis = Input.GetAxisRaw("Horizontal");
+    }
+
+    private void Move()
+    {
+        transform.position += maxMoveSpeed * Time.deltaTime * verticalInputAxis * transform.forward;
+        transform.position += horizontalInputAxis * maxMoveSpeed * Time.deltaTime * transform.right;
     }
 }
