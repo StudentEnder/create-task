@@ -233,8 +233,115 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eeb9ae07f51e954d9b045dbcd217799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 1
-  dragCoefficient: 0.9
+  velocity: {x: 0, y: 0, z: 0}
+  speed: 0
+  moveForce: 5
+--- !u!114 &1766053262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766053260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1453292b25c116b4a8ef33fb6cc386be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1766053263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766053260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 20ebf58869a7b3e4a90d7820606ef353, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 1453292b25c116b4a8ef33fb6cc386be, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Test
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 88b5ad21-d83b-4c9f-931c-ea943ea380d6
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 996abcb1-f6b1-4a3d-b7af-adbf75fc164d
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c9f34c09-0865-434a-842f-03bb17446abd
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 16c9bfee-f012-42cc-bb4a-10adccd02d0b
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5c66d89a-fa1c-4b4f-ba12-09858bcead3e
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1c5e143-9f72-4ecd-a857-873eb4b6b077
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c41231a8-ab97-4325-a357-0c275cbd5e82
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 98bae8bc-2d8f-4aaf-83e9-f4ff65d5b8da
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2693566d-25e6-441a-9263-a40401c91e12
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5796253d-743a-4cf4-a169-1b814bc300f9
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 351a3122-17f6-489a-a4c6-3d6b2ed7ab57
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d0f23fd7-d609-42bf-be4b-c016a989ce10
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 12a85901-1f0d-4ef1-b9bc-9f5145a49ee8
+    m_ActionName: UI/TrackedDeviceOrientation
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &2028016428
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +466,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2979284279778088534, guid: c55972e883e90e44da8746c4b841cf3b, type: 3}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2979284279778088534, guid: c55972e883e90e44da8746c4b841cf3b, type: 3}
       propertyPath: m_Mass
       value: 0.1
       objectReference: {fileID: 0}
@@ -384,7 +495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4111652540321416322, guid: c55972e883e90e44da8746c4b841cf3b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.8011096
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4111652540321416322, guid: c55972e883e90e44da8746c4b841cf3b, type: 3}
       propertyPath: m_LocalRotation.w
