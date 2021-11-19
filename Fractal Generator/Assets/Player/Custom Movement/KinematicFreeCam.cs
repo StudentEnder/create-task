@@ -8,14 +8,14 @@ public class KinematicFreeCam : MonoBehaviour
 {
     private new Rigidbody rigidbody;
 
-    [SerializeField] private Vector3 velocity;
-    [SerializeField] private float speed;
+    [SerializeField] private Vector3 inputDirection = Vector3.zero;
 
-    //private float verticalInputAxis = 0f;
-    //private float horizontalInputAxis = 0f;
-    private Vector3 inputAxes = Vector3.zero;
+    private float moveForce;
+    public float maxSpeed = 1f;
 
-    public float moveForce = 10f;
+    public float dragConstant = .5f;
+    public float forceConstant = 10f;
+    public float ratioConstant = 196f;
     //public float dragCoefficient = .9f;
     //public float dragMinimum = 2f;
 
@@ -39,27 +39,18 @@ public class KinematicFreeCam : MonoBehaviour
 
     private void FixedUpdate()
     {
-        velocity = rigidbody.velocity;
-        speed = rigidbody.velocity.magnitude;
-
         Move();
     }
 
     private void CaptureInputs()
     {
-        //horizontalInputAxis = Input.GetAxisRaw("Horizontal");
-        //verticalInputAxis = Input.GetAxisRaw("Vertical");
-        //inputAxes.x = moveAction
         
     }
 
     private void Move()
     {
-        // rigidbody.AddForce(KinematicUtils.DragForce(dragCoefficient, dragMinimum, rigidbody.velocity) * Time.fixedDeltaTime);
-
-        //rigidbody.AddForce(Vector3.right * horizontalInputAxis * moveForce * Time.fixedDeltaTime);
-        //rigidbody.AddForce(Vector3.forward * verticalInputAxis * moveForce * Time.fixedDeltaTime);
-
-        rigidbody.AddForce(inputAxes * moveForce * Time.fixedDeltaTime);
+        moveForce = forceConstant * maxSpeed;
+        rigidbody.drag = dragConstant * ratioConstant;
+        rigidbody.AddForce(inputDirection * moveForce * Time.fixedDeltaTime);
     }
 }
