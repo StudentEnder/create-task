@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class ManualFreeCam : MonoBehaviour
 {
 
@@ -27,8 +26,7 @@ public class ManualFreeCam : MonoBehaviour
 
     private void CaptureInputs()
     {
-        verticalInputAxis = Input.GetAxisRaw("Vertical");
-        horizontalInputAxis = Input.GetAxisRaw("Horizontal");
+
     }
 
     private void Move()
