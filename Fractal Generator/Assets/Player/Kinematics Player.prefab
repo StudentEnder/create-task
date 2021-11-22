@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1642628984555257735}
   - component: {fileID: 564647530398566211}
   - component: {fileID: -2979284279778088534}
-  - component: {fileID: 2741563019379653490}
   m_Layer: 0
   m_Name: Kinematics Player
   m_TagString: Untagged
@@ -100,15 +99,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2741563019379653490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2287552030146352464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62da2a0a8e55b2649b8e4d6b096771ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
