@@ -36,6 +36,14 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Open Menu",
+                    "type": "Button",
+                    "id": "85962c24-4efa-42fc-8897-55dee94066ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -212,6 +220,17 @@
                     "processors": "InvertVector2(invertX=false,invertY=false)",
                     "groups": "Gamepad",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1dc7615a-0e70-4542-ab55-8c4bd66c1598",
+                    "path": "*/{Menu}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse;Gamepad",
+                    "action": "Open Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
