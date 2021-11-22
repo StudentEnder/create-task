@@ -6,7 +6,7 @@
             "id": "abb6641a-6729-4ebb-b382-9b203902f327",
             "actions": [
                 {
-                    "name": "Forward Translation",
+                    "name": "Horizontal Translation",
                     "type": "Value",
                     "id": "0f92f86e-2065-482a-8cd6-11713074ce1e",
                     "expectedControlType": "Vector2",
@@ -46,7 +46,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Forward Translation",
+                    "action": "Horizontal Translation",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -57,7 +57,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Forward Translation",
+                    "action": "Horizontal Translation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -68,7 +68,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Forward Translation",
+                    "action": "Horizontal Translation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -79,7 +79,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Forward Translation",
+                    "action": "Horizontal Translation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -90,7 +90,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Forward Translation",
+                    "action": "Horizontal Translation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -101,7 +101,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Forward Translation",
+                    "action": "Horizontal Translation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
