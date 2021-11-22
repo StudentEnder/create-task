@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerFreeCamController : MonoBehaviour
+public class ManualFreeCam : MonoBehaviour
 {
 
     private float horizontalInputAxis = 0f;
