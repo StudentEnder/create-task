@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3756164757588830300}
   - component: {fileID: 3756164757588830299}
   - component: {fileID: -263044119781692954}
+  - component: {fileID: -610100459660658157}
   m_Layer: 0
   m_Name: Manual Player
   m_TagString: Untagged
@@ -96,3 +97,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMoveSpeed: 10
+--- !u!114 &-610100459660658157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756164757588830296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ec2fc5d19c63a6645b95eb2d73cd5206, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0f92f86e-2065-482a-8cd6-11713074ce1e
+    m_ActionName: Camera/Horizontal Translation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0f7d9003-2ecb-4c18-936c-3ac8893997b4
+    m_ActionName: Camera/Vertical Translation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0f708ab-ebf1-4da5-be2e-6850474da688
+    m_ActionName: Camera/Look
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e50371a5-3890-4f2f-8f86-6aa6aad3c416
+    m_ActionName: Camera/Tilt
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard & Mouse
+  m_DefaultActionMap: Camera
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

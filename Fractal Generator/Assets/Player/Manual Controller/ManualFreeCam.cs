@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ManualFreeCam : MonoBehaviour
 {
@@ -33,5 +32,37 @@ public class ManualFreeCam : MonoBehaviour
     {
         transform.position += maxMoveSpeed * Time.deltaTime * verticalInputAxis * transform.forward;
         transform.position += horizontalInputAxis * maxMoveSpeed * Time.deltaTime * transform.right;
+    }
+
+
+    // INPUT MESSAGES
+
+    private void OnHorizontalTranslation(InputValue input)
+    {
+        Vector2 horizontalMovementInput = input.Get<Vector2>();
+        //Debug.Log("Horizontal Movement: " + horizontalMovementInput);
+    }
+
+    private void OnVerticalTranslation(InputValue input)
+    {
+        float verticalMovementInput = input.Get<float>();
+        //Debug.Log("Vertical Movement: " + verticalMovementInput);
+    }
+
+    private void OnLook(InputValue input)
+    {
+        Vector2 lookInput = input.Get<Vector2>();
+        //Debug.Log("Look input: " + lookInput);
+    }
+
+    private void OnTilt(InputValue input)
+    {
+        float tiltInput = input.Get<float>();
+        //Debug.Log("Tilt input: " + tiltInput);
+    }
+
+    private void OnOpenMenu()
+    {
+        //Debug.Log("Menu Opened");
     }
 }
