@@ -4,10 +4,18 @@ using UnityEngine.InputSystem;
 public class ManualFreeCam : MonoBehaviour
 {
 
-    private float horizontalInputAxis = 0f;
-    private float verticalInputAxis = 0f;
-
     public float maxMoveSpeed = 10f;
+
+    private Vector2 horizontalMovementInput = Vector2.zero;
+
+    private float verticalMovementInput = 0f;
+
+
+    public float lookSensitivity = 10f;
+    private Vector2 lookInput = Vector2.zero;
+
+    public float tiltSpeed = 10f;
+    private float tiltInput = 0f;
 
 
     // Start is called before the first frame update
@@ -20,6 +28,7 @@ public class ManualFreeCam : MonoBehaviour
     void Update()
     {
         CaptureInputs();
+        Look();
         Move();
     }
 
@@ -28,10 +37,32 @@ public class ManualFreeCam : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Rotates gameobject according to look inputs
+    /// Looking code inspired by lukeskt: https://github.com/lukeskt/InputSystemFirstPersonCharacter/blob/main/InputSystemFirstPersonCharacterScripts/InputSystemFirstPersonCharacter.cs
+    /// </summary>
+    private void Look()
+    {
+        float lookX = lookInput.x * lookSensitivity * Time.deltaTime; // look left and right
+        float lookY = lookInput.y * lookSensitivity * Time.deltaTime; // look up and down
+        float lookZ = tiltInput * tiltSpeed * Time.deltaTime; // tilt leftward and rightward
+
+        transform.Rotate(-lookY, lookX, -lookZ);
+    }
+
+    /// <summary>
+    /// Moves gameobject according to translation inputs
+    /// Move should be called after Look, as movement is relative to look direction
+    /// </summary>
     private void Move()
     {
-        transform.position += maxMoveSpeed * Time.deltaTime * verticalInputAxis * transform.forward;
-        transform.position += horizontalInputAxis * maxMoveSpeed * Time.deltaTime * transform.right;
+        // horizontal movement
+        transform.position += maxMoveSpeed * Time.deltaTime *
+            ((transform.right * horizontalMovementInput.x) + // left and right
+            (transform.forward * horizontalMovementInput.y)); // forward and back
+
+        // vertical movement
+        transform.position += maxMoveSpeed * Time.deltaTime * verticalMovementInput * transform.up;
     }
 
 
@@ -39,25 +70,25 @@ public class ManualFreeCam : MonoBehaviour
 
     private void OnHorizontalTranslation(InputValue input)
     {
-        Vector2 horizontalMovementInput = input.Get<Vector2>();
+        horizontalMovementInput = input.Get<Vector2>();
         //Debug.Log("Horizontal Movement: " + horizontalMovementInput);
     }
 
     private void OnVerticalTranslation(InputValue input)
     {
-        float verticalMovementInput = input.Get<float>();
+        verticalMovementInput = input.Get<float>();
         //Debug.Log("Vertical Movement: " + verticalMovementInput);
     }
 
     private void OnLook(InputValue input)
     {
-        Vector2 lookInput = input.Get<Vector2>();
+        lookInput = input.Get<Vector2>();
         //Debug.Log("Look input: " + lookInput);
     }
 
     private void OnTilt(InputValue input)
     {
-        float tiltInput = input.Get<float>();
+        tiltInput = input.Get<float>();
         //Debug.Log("Tilt input: " + tiltInput);
     }
 
