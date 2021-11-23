@@ -57,6 +57,7 @@ public class ManualFreeCam : MonoBehaviour
         xRotation -= lookY;
         if (xLookClamping) xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+        // separating camera like this causes issues after tilting. The movement direction becomes misaligned from where the camera is pointing. (possible solution: base movement off of camera's transform instead of parent object. This seems hacky though.) 
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         //transform.localRotation = Quaternion.Euler(xRotation, transform.localRotation.y, transform.localRotation.z);
