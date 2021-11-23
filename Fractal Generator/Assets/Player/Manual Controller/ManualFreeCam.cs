@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class ManualFreeCam : MonoBehaviour
 {
+    public Camera playerCamera;
 
     public float maxMoveSpeed = 10f;
 
@@ -12,7 +13,13 @@ public class ManualFreeCam : MonoBehaviour
 
 
     public float lookSensitivity = 10f;
+
+
+    public bool xLookClamping = true; // on by default because strange behavior (axis looking is able to flip after the right turning) occurs when it's off. Is it possible to prevent this while clamping is off?
+
+
     private Vector2 lookInput = Vector2.zero;
+    private float xRotation = 0;
 
     public float tiltSpeed = 10f;
     private float tiltInput = 0f;
@@ -47,7 +54,13 @@ public class ManualFreeCam : MonoBehaviour
         float lookY = lookInput.y * lookSensitivity * Time.deltaTime; // look up and down
         float lookZ = tiltInput * tiltSpeed * Time.deltaTime; // tilt leftward and rightward
 
-        transform.Rotate(-lookY, lookX, -lookZ);
+        xRotation -= lookY;
+        if (xLookClamping) xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+        //transform.localRotation = Quaternion.Euler(xRotation, transform.localRotation.y, transform.localRotation.z);
+        transform.Rotate(0f, lookX, -lookZ);
     }
 
     /// <summary>
