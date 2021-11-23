@@ -5,21 +5,19 @@ public class ManualFreeCam : MonoBehaviour
 {
     public Camera playerCamera;
 
+    [Header("Movement")]
     public float maxMoveSpeed = 10f;
 
     private Vector2 horizontalMovementInput = Vector2.zero;
-
     private float verticalMovementInput = 0f;
 
-
+    [Header("Look")]
+    public float fieldOfView = 60f;
     public float lookSensitivity = 10f;
-
-
     public bool xLookClamping = true; // on by default because strange behavior (axis looking is able to flip after the right turning) occurs when it's off. Is it possible to prevent this while clamping is off?
 
-
     private Vector2 lookInput = Vector2.zero;
-    private float xRotation = 0;
+    private float xRotation = 0f;
 
     public float tiltSpeed = 10f;
     private float tiltInput = 0f;
@@ -29,6 +27,7 @@ public class ManualFreeCam : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        playerCamera.fieldOfView = fieldOfView;
     }
 
     // Update is called once per frame
