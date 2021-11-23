@@ -226,10 +226,21 @@
                 {
                     "name": "",
                     "id": "1dc7615a-0e70-4542-ab55-8c4bd66c1598",
-                    "path": "*/{Menu}",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard & Mouse;Gamepad",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Open Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19a76fc1-035d-4e09-acdb-20bcfbdf5f92",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Open Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
