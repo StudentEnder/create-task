@@ -246,7 +246,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 2028016430}
   maxMoveSpeed: 10
+  fieldOfView: 60
   lookSensitivity: 10
+  xLookClamping: 1
   tiltSpeed: 10
 --- !u!114 &-610100459660658157
 MonoBehaviour:
