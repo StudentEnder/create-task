@@ -13,15 +13,11 @@ public class LineFractalEditor : Editor
 
         Undo.RecordObject(lineFractal, "Change LineFractal");
 
-        if (GUILayout.Button("Destroy"))
-        {
-            lineFractal.DestroyChildren();
-        }
-
         if (GUILayout.Button("Generate"))
         {
             lineFractal.Generate();
             // TODO: display a progress bar, or at least a completion message, when done generating.
+            // TODO: Somehow prevent children generated in Edit mode being saved to the scene.
         }
 
     }

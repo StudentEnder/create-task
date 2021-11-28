@@ -23,9 +23,12 @@ public class LineFractal : MonoBehaviour
     [Tooltip("Rotation applied to each depth relative to prior depth.")]
     public Quaternion rotationModifier;
 
+    // TODO remake Start (or OnEnable) to respect the editor buttons when in the editor, and Generate when in a build.
+    // TODO add object pooling to avoid unnecessary destruction and initialization
+
     public void Generate()
     {
-        //DestroyChildren();
+        DestroyChildren();
         SpawnLines(maxDepth);
     }
 
@@ -35,7 +38,7 @@ public class LineFractal : MonoBehaviour
         if (Application.isPlaying)
         {
 #endif
-            Debug.Log("lineFractal children destruction while in PLAY");
+            //Debug.Log("lineFractal children destruction while in PLAY");
             foreach (Transform child in transform)
             {
                 // Destroy only works normally when playing.
@@ -47,7 +50,7 @@ public class LineFractal : MonoBehaviour
         else
         {
             // child destruction when in edit mode.
-            Debug.Log("lineFractal children destruction while in EDIT");
+            //Debug.Log("lineFractal children destruction while in EDIT");
             // editor child destruction code from StackOverflow user Paul Delobbel: https://stackoverflow.com/questions/38120084/how-can-we-destroy-child-objects-in-edit-modeunity3d
             // decrements, deleting the first child, until no children are left.
             for (int i = transform.childCount; i > 0; --i)
