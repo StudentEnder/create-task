@@ -23,10 +23,39 @@ public class LineFractal : MonoBehaviour
     [Tooltip("Rotation applied to each depth relative to prior depth.")]
     public Quaternion rotationModifier;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Generate()
     {
+        //DestroyChildren();
         SpawnLines(maxDepth);
+    }
+
+    public void DestroyChildren()
+    {
+#if UNITY_EDITOR
+        if (Application.isPlaying)
+        {
+#endif
+            Debug.Log("lineFractal children destruction while in PLAY");
+            foreach (Transform child in transform)
+            {
+                // Destroy only works normally when playing.
+                Destroy(child.gameObject);
+            }
+#if UNITY_EDITOR
+        }
+        // TODO: test the #if tags in a game build (for no compiler errors when this function is called)
+        else
+        {
+            // child destruction when in edit mode.
+            Debug.Log("lineFractal children destruction while in EDIT");
+            // editor child destruction code from StackOverflow user Paul Delobbel: https://stackoverflow.com/questions/38120084/how-can-we-destroy-child-objects-in-edit-modeunity3d
+            // decrements, deleting the first child, until no children are left.
+            for (int i = transform.childCount; i > 0; --i)
+            {
+                DestroyImmediate(transform.GetChild(0).gameObject);
+            }
+        }
+#endif
     }
 
     /// <summary>
