@@ -54,9 +54,12 @@ public class ManualFreeCam : MonoBehaviour
         float lookZ = tiltInput * tiltSpeed * Time.deltaTime; // tilt leftward and rightward
 
         xRotation -= lookY;
+
+
+        // when xLookClamping is disabled, and all 3 euler rotation axis are traversed beyond 90 (or 180) degrees at once, there is an issue where look controls flip. 
+        // This is likely due to euler gimbal-lock related problems, solved by relying more on quaternions.
         if (xLookClamping) xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        // separating camera like this causes issues after tilting. The movement direction becomes misaligned from where the camera is pointing. (possible solution: base movement off of camera's transform instead of parent object. This seems hacky though.) 
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         //transform.localRotation = Quaternion.Euler(xRotation, transform.localRotation.y, transform.localRotation.z);
@@ -71,11 +74,13 @@ public class ManualFreeCam : MonoBehaviour
     {
         // horizontal movement
         transform.position += maxMoveSpeed * Time.deltaTime *
-            ((transform.right * horizontalMovementInput.x) + // left and right
-            (transform.forward * horizontalMovementInput.y)); // forward and back
+            ((playerCamera.transform.right * horizontalMovementInput.x) + // left and right
+            (playerCamera.transform.forward * horizontalMovementInput.y)); // forward and back
 
         // vertical movement
-        transform.position += maxMoveSpeed * Time.deltaTime * verticalMovementInput * transform.up;
+        transform.position += maxMoveSpeed * Time.deltaTime * verticalMovementInput * playerCamera.transform.up;
+
+        // (seems like a hacky solution: basing movement on camera direction. Likely a way to simplify it to the gameobject transform by applying the x (or y?) rotation the same way gameobject inheritance applies rotation.
     }
 
 
