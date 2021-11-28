@@ -69,12 +69,21 @@ public class LineFractal : MonoBehaviour
     {
         for (int depth = minDepth; depth < maxDepth; depth++)
         {
-            LengthCapsule newLine = Instantiate(lineObject, transform).GetComponent<LengthCapsule>();
-            newLine.transform.localPosition = Offset(depth);
-            newLine.transform.localRotation = Rotation(depth);
-            newLine.SetLength(Length(depth));
-            newLine.SetRadius(Radius(depth));
+            SpawnLine(depth);
         }
+    }
+
+    /// <summary>
+    /// Instantiates a single fractal object at the specified depth
+    /// </summary>
+    /// <param name="depth">Depth to spawn fractal object at</param>
+    public void SpawnLine(int depth)
+    {
+        LengthCapsule newLine = Instantiate(lineObject, transform).GetComponent<LengthCapsule>();
+        newLine.transform.localPosition = Offset(depth);
+        newLine.transform.localRotation = Rotation(depth);
+        newLine.SetLength(Length(depth));
+        newLine.SetRadius(Radius(depth));
     }
     
     /// <summary>
