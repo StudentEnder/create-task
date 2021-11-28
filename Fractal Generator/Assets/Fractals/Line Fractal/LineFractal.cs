@@ -26,12 +26,19 @@ public class LineFractal : MonoBehaviour
     // TODO remake Start (or OnEnable) to respect the editor buttons when in the editor, and Generate when in a build.
     // TODO add object pooling to avoid unnecessary destruction and initialization
 
+    /// <summary>
+    /// Generates the fractal. 
+    /// This first destroys the object's children, then respawns them with the current parameters.
+    /// </summary>
     public void Generate()
     {
         DestroyChildren();
         SpawnLines(minDepth, maxDepth);
     }
 
+    /// <summary>
+    /// Destroys all this object's children.
+    /// </summary>
     public void DestroyChildren()
     {
 #if UNITY_EDITOR
