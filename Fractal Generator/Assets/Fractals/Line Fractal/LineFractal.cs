@@ -60,7 +60,7 @@ public class LineFractal : MonoBehaviour
             //Debug.Log("lineFractal children destruction while in EDIT");
             // editor child destruction code from StackOverflow user Paul Delobbel: https://stackoverflow.com/questions/38120084/how-can-we-destroy-child-objects-in-edit-modeunity3d
             // decrements, deleting the first child, until no children are left.
-            for (int i = transform.childCount; i > 0; --i)
+            for (int i = transform.childCount; i > 0; i--)
             {
                 DestroyImmediate(transform.GetChild(0).gameObject);
             }
