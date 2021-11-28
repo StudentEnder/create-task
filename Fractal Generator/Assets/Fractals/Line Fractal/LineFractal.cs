@@ -29,7 +29,7 @@ public class LineFractal : MonoBehaviour
     public void Generate()
     {
         DestroyChildren();
-        SpawnLines(maxDepth);
+        SpawnLines(minDepth, maxDepth);
     }
 
     public void DestroyChildren()
@@ -65,7 +65,7 @@ public class LineFractal : MonoBehaviour
     /// Instantiates fractal objects up to specified depth.
     /// </summary>
     /// <param name="maxDepth"></param>
-    public void SpawnLines(int maxDepth)
+    public void SpawnLines(int minDepth, int maxDepth)
     {
         for (int depth = minDepth; depth < maxDepth; depth++)
         {
