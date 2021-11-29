@@ -33,14 +33,8 @@ public class ManualFreeCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CaptureInputs();
         Look();
         Move();
-    }
-
-    private void CaptureInputs()
-    {
-
     }
 
     /// <summary>
