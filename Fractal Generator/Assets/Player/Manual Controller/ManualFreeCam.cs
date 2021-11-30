@@ -17,7 +17,6 @@ public class ManualFreeCam : MonoBehaviour
     public bool xLookClamping = true; // on by default because strange behavior (axis looking is able to flip after the right turning) occurs when it's off. Is it possible to prevent this while clamping is off?
 
     private Vector2 lookInput = Vector2.zero;
-    private float xRotation = 0f;
 
     public float tiltSpeed = 10f;
     private float tiltInput = 0f;
@@ -43,21 +42,11 @@ public class ManualFreeCam : MonoBehaviour
     /// </summary>
     private void Look()
     {
-        float yaw = lookInput.x * lookSensitivity * Time.deltaTime; // look left and right
         float pitch = lookInput.y * lookSensitivity * Time.deltaTime; // look up and down
+        float yaw = lookInput.x * lookSensitivity * Time.deltaTime; // look left and right
         float roll = tiltInput * tiltSpeed * Time.deltaTime; // tilt leftward and rightward
 
-        xRotation -= pitch;
-
-
-        // when xLookClamping is disabled, and all 3 euler rotation axis are traversed beyond 90 (or 180) degrees at once, there is an issue where look controls flip. 
-        // This is likely due to euler gimbal-lock related problems, solved by relying more on quaternions.
-        if (xLookClamping) xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        //transform.localRotation = Quaternion.Euler(xRotation, transform.localRotation.y, transform.localRotation.z);
-        transform.Rotate(0f, yaw, -roll);
+        transform.Rotate(-pitch, yaw, -roll);
     }
 
     /// <summary>
@@ -68,11 +57,9 @@ public class ManualFreeCam : MonoBehaviour
     {
         // horizontal movement
         transform.position += maxMoveSpeed * Time.deltaTime *
-            ((playerCamera.transform.right * horizontalMovementInput.x) + // left and right
-            (playerCamera.transform.forward * horizontalMovementInput.y)); // forward and back
-
-        // vertical movement
-        transform.position += maxMoveSpeed * Time.deltaTime * verticalMovementInput * playerCamera.transform.up;
+            ((transform.right * horizontalMovementInput.x) + // yaw
+            (transform.forward * horizontalMovementInput.y) + // roll
+            (transform.up * verticalMovementInput)); // pitch
 
         // (seems like a hacky solution: basing movement on camera direction. Likely a way to simplify it to the gameobject transform by applying the x (or y?) rotation the same way gameobject inheritance applies rotation.
     }
