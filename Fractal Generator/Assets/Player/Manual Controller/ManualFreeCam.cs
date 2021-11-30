@@ -43,11 +43,11 @@ public class ManualFreeCam : MonoBehaviour
     /// </summary>
     private void Look()
     {
-        float lookX = lookInput.x * lookSensitivity * Time.deltaTime; // look left and right
-        float lookY = lookInput.y * lookSensitivity * Time.deltaTime; // look up and down
-        float lookZ = tiltInput * tiltSpeed * Time.deltaTime; // tilt leftward and rightward
+        float yaw = lookInput.x * lookSensitivity * Time.deltaTime; // look left and right
+        float pitch = lookInput.y * lookSensitivity * Time.deltaTime; // look up and down
+        float roll = tiltInput * tiltSpeed * Time.deltaTime; // tilt leftward and rightward
 
-        xRotation -= lookY;
+        xRotation -= pitch;
 
 
         // when xLookClamping is disabled, and all 3 euler rotation axis are traversed beyond 90 (or 180) degrees at once, there is an issue where look controls flip. 
@@ -57,7 +57,7 @@ public class ManualFreeCam : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         //transform.localRotation = Quaternion.Euler(xRotation, transform.localRotation.y, transform.localRotation.z);
-        transform.Rotate(0f, lookX, -lookZ);
+        transform.Rotate(0f, yaw, -roll);
     }
 
     /// <summary>
