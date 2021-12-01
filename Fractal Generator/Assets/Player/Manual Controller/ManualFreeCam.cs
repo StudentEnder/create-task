@@ -60,8 +60,6 @@ public class ManualFreeCam : MonoBehaviour
             ((transform.up * verticalMovementInput) + // pitch
             (transform.right * horizontalMovementInput.x) + // yaw
             (transform.forward * horizontalMovementInput.y)); // roll
-
-        // (seems like a hacky solution: basing movement on camera direction. Likely a way to simplify it to the gameobject transform by applying the x (or y?) rotation the same way gameobject inheritance applies rotation.
     }
 
 
