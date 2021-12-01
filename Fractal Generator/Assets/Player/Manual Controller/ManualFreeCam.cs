@@ -1,15 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+internal enum CurveType {
+    Custom,
+    Sigmoid
+}
+
 public class ManualFreeCam : MonoBehaviour
 {
     public Camera playerCamera;
 
     [Header("Movement")]
     public float maxMoveSpeed = 10f;
+    private float speed = 0f;
 
     private Vector2 horizontalMovementInput = Vector2.zero;
     private float verticalMovementInput = 0f;
+
+    public AnimationCurve velocityCurve;
 
     [Header("Look")]
     public float fieldOfView = 60f;
@@ -27,6 +35,7 @@ public class ManualFreeCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerCamera.fieldOfView = fieldOfView;
+
     }
 
     // Update is called once per frame
@@ -47,6 +56,11 @@ public class ManualFreeCam : MonoBehaviour
         float roll = tiltInput * tiltSpeed * Time.deltaTime; // tilt leftward and rightward
 
         transform.Rotate(-pitch, yaw, -roll);
+    }
+
+    private void CalculateSpeed()
+    {
+        //speed = e
     }
 
     /// <summary>
