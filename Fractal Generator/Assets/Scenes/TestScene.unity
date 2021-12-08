@@ -21860,6 +21860,10 @@ PrefabInstance:
       propertyPath: xLookClamping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 300548212835890443, guid: 1c85adff85bb57b45a4a9cfcfe60ebb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3756164757588830296, guid: 1c85adff85bb57b45a4a9cfcfe60ebb6, type: 3}
       propertyPath: m_Name
       value: Manual Player
