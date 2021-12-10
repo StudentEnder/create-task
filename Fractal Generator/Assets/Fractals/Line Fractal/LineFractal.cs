@@ -156,3 +156,4 @@ public class LineFractal : MonoBehaviour
         return offset;
     }
 }
+   
