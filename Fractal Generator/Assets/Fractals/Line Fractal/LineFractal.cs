@@ -14,6 +14,9 @@ public class LineFractal : MonoBehaviour
     public int maxDepth = 1;
 
     [Header("Scaling:")]
+    [Tooltip("Ratio between length and radius of the capsules.")]
+    public float lengthToRadiusRatio = 1f;
+    private float radiusToLengthRatio = 1f;
     [Tooltip("Length scalar applied to each depth relative to prior depth.")]
     public float lengthScalar = 1f;
     [Tooltip("Radius scalar applied to each depth relative to prior depth.")]
@@ -33,6 +36,7 @@ public class LineFractal : MonoBehaviour
     public void Generate()
     {
         DestroyChildren();
+        radiusToLengthRatio = 1f / lengthToRadiusRatio;
         SpawnLines(minDepth, maxDepth);
     }
 
@@ -110,7 +114,7 @@ public class LineFractal : MonoBehaviour
     /// <returns></returns>
     public float Length(int currentDepth)
     {
-        return Mathf.Pow(lengthScalar, currentDepth);
+        return lengthToRadiusRatio * Mathf.Pow(lengthScalar, currentDepth);
     }
 
     /// <summary>
@@ -120,7 +124,7 @@ public class LineFractal : MonoBehaviour
     /// <returns></returns>
     public float Radius(int currentDepth)
     {
-        return Mathf.Pow(radiusScalar, currentDepth);
+        return radiusToLengthRatio * Mathf.Pow(radiusScalar, currentDepth);
     }
 
     /// <summary>
