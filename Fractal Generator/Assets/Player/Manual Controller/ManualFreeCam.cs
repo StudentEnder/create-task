@@ -12,12 +12,13 @@ public class ManualFreeCam : MonoBehaviour
 
     [Header("Movement")]
     public float maxMoveSpeed = 10f;
-    private float speed = 0f;
+
+    //private float speed = 0f; // TODO implement speed curves
+    //public AnimationCurve speedCurve;
 
     private Vector2 horizontalMovementInput = Vector2.zero;
     private float verticalMovementInput = 0f;
 
-    public AnimationCurve velocityCurve;
 
     [Header("Look")]
     public float fieldOfView = 60f;
@@ -58,10 +59,12 @@ public class ManualFreeCam : MonoBehaviour
         transform.Rotate(-pitch, yaw, -roll);
     }
 
+    /*
     private void CalculateSpeed()
     {
         //speed = e
     }
+    */
 
     /// <summary>
     /// Moves gameobject according to translation inputs
