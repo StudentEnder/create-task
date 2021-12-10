@@ -19,6 +19,8 @@ public class ManualFreeCam : MonoBehaviour
     private Vector2 horizontalMovementInput = Vector2.zero;
     private float verticalMovementInput = 0f;
 
+    private bool menuOpen = false;
+
 
     [Header("Look")]
     public float fieldOfView = 60f;
@@ -42,8 +44,11 @@ public class ManualFreeCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Look();
-        Move();
+        if (menuOpen == false)
+        {
+            Look();
+            Move();
+        }
     }
 
     /// <summary>
@@ -108,6 +113,8 @@ public class ManualFreeCam : MonoBehaviour
 
     private void OnOpenMenu()
     {
-        //Debug.Log("Menu Opened");
+        menuOpen = !menuOpen;
+
+        Cursor.lockState = menuOpen ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }
