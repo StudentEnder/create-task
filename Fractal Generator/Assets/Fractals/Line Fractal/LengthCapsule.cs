@@ -2,11 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LengthCapsule : MonoBehaviour
+public class LengthCapsule : PooledItem
 {
     [SerializeField] private Transform cylinder;
     [SerializeField] private Transform topCap;
     [SerializeField] private Transform bottomCap;
+
+    public override void Init()
+    {
+
+    }
+
+    protected override void Reset()
+    {
+        
+    }
 
     public void SetLength(float length)
     {
@@ -27,4 +37,5 @@ public class LengthCapsule : MonoBehaviour
         topCap.localScale = new Vector3(radius, radius, radius);
         bottomCap.localScale = new Vector3(radius, radius, radius);
     }
+
 }

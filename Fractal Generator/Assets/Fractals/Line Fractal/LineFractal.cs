@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class LineFractal : MonoBehaviour
 {
-    public GameObject lineObject;
+    public LengthCapsule lineObject;
+
+    private Pool<LengthCapsule> pool;
+    [Tooltip("Amount of objects to pool in object pooler")]
+    public int poolSize = 100;
 
     // Variables
 
@@ -26,8 +30,26 @@ public class LineFractal : MonoBehaviour
     [Tooltip("Rotation applied to each depth relative to prior depth.")]
     public Quaternion rotationModifier;
 
+    /// <summary>
+    /// Dispose the object pooler and its reference.
+    /// </summary>
+    public void Dispose()
+    {
+        pool?.Dispose(); // if pool isn't null (? operator), Dispose of it before assigning a new reference.
+        pool = null; // just to be explicit. Definitely don't want to reference a disposed object pooler.
+    }
+
+    /// <summary>
+    /// Prepares fractal to be generated (currently, this creates an object pooler).
+    /// </summary>
+    public void Init()
+    {
+        if (pool != null) Dispose(); // only Init with a clean slate.
+
+        pool = new Pool<LengthCapsule>(lineObject, poolSize, transform);
+    }
+
     // TODO remake Start (or OnEnable) to respect the editor buttons when in the editor, and Generate when in a build.
-    // TODO add object pooling to avoid unnecessary destruction and initialization
 
     /// <summary>
     /// Generates the fractal. 
@@ -35,8 +57,11 @@ public class LineFractal : MonoBehaviour
     /// </summary>
     public void Generate()
     {
-        DestroyChildren();
+        if (pool == null) Init();
+
+        pool.ReleaseAllPool();
         radiusToLengthRatio = 1f / lengthToRadiusRatio;
+
         SpawnLines(minDepth, maxDepth);
     }
 
@@ -90,7 +115,7 @@ public class LineFractal : MonoBehaviour
     /// <param name="depth">Depth to spawn fractal object at</param>
     public void SpawnLine(int depth)
     {
-        LengthCapsule newLine = Instantiate(lineObject, transform).GetComponent<LengthCapsule>();
+        LengthCapsule newLine = pool.Get();
         newLine.transform.localPosition = Offset(depth);
         newLine.transform.localRotation = Rotation(depth);
         newLine.SetLength(Length(depth));
