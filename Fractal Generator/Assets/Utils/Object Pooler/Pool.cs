@@ -53,7 +53,6 @@ public class Pool<T> where T: PooledItem
         this.poolSize = 0; // set to 0 at first because ExpandPool adds the poolSize
 
         availableObjects = new Queue<T>();
-
         holder = new GameObject($"Pool ({typeof(T)})");
 
         ExpandPool(poolSize);
