@@ -49,8 +49,8 @@ public class Pool<T> where T: PooledItem
     /// <param name="poolSize">The amount of objects to store in the pool.</param>
     public Pool(T prefab, int poolSize)
     {
-        this.poolSize = 0; // set to 0 at first because ExpandPool adds the poolSize
         this.prefab = prefab;
+        this.poolSize = 0; // set to 0 at first because ExpandPool adds the poolSize
 
         availableObjects = new Queue<T>();
 
