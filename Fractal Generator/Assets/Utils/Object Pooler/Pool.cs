@@ -51,10 +51,11 @@ public class Pool<T> where T: PooledItem
     public Pool(T prefab, int poolSize, Transform parent)
     {
         this.prefab = prefab;
-        this.poolSize = 0; // set to 0 at first because ExpandPool adds the poolSize
+        this.poolSize = 0; // set to 0 at first because ExpandPool increases the poolSize
 
-        availableObjects = new Queue<T>();
+        availableObjects = new Queue<T>(); // Initializes a new first-in first-out Queue
 
+        // Create the Unity holder which organizes the pooled items.
         holder = new GameObject($"Pool ({typeof(T)})");
         holder.transform.SetParent(parent);
 

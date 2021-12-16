@@ -40,11 +40,11 @@ public class LineFractal : MonoBehaviour
     }
 
     /// <summary>
-    /// Prepares fractal to be generated (currently, this creates an object pooler).
+    /// Prepares fractal to be generated.
     /// </summary>
     public void Init()
     {
-        if (pool != null) Dispose(); // only Init with a clean slate.
+        if (pool != null) Dispose(); // If pool already exists, empty before initialization.
 
         pool = new Pool<LengthCapsule>(lineObject, poolSize, transform);
     }
@@ -174,9 +174,13 @@ public class LineFractal : MonoBehaviour
     public Vector3 Offset(int currentDepth)
     {
         Vector3 offset = Vector3.zero;
-        for (int depth = 0; depth < currentDepth; depth++)
+        if (currentDepth != 0)
         {
-            offset += .5f * (Vector(depth) + Vector(depth + 1));
+            for (int depth = 0; depth < currentDepth; depth++)
+            {
+                offset += .5f * (Vector(depth) + Vector(depth + 1));
+            }
+
         }
         return offset;
     }
