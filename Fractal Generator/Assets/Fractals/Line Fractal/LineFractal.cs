@@ -129,11 +129,10 @@ public class LineFractal : MonoBehaviour
     /// <summary>
     /// Returns rotation of object for specified depth.
     /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
+    /// <param name="currentDepth">The depth to calculate rotation for.</param>
     public Quaternion Rotation(int currentDepth)
     {
-        if (currentDepth % skipStep == 0 && skipStep != 1)
+        if (skipStep != 0 && currentDepth % skipStep == 0) // skip a depth's rotation
         {
             return Quaternion.identity;
         }
