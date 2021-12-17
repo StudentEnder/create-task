@@ -54,8 +54,7 @@ public class LineFractal : MonoBehaviour
     // TODO remake Start (or OnEnable) to respect the editor buttons when in the editor, and Generate when in a build.
 
     /// <summary>
-    /// Generates the fractal. 
-    /// This first destroys the object's children, then respawns them with the current parameters.
+    /// Generates the fractal.
     /// </summary>
     public void Generate()
     {
