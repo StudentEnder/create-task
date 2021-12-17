@@ -29,6 +29,8 @@ public class LineFractal : MonoBehaviour
     [Header("Rotation values:")]
     [Tooltip("Rotation applied to each depth relative to prior depth.")]
     public Quaternion rotationModifier;
+    [Tooltip("Sets custom rotation of every Nth depth.")]
+    public int skipStep = 1;
 
     /// <summary>
     /// Dispose the object pooler and its reference.
@@ -60,7 +62,7 @@ public class LineFractal : MonoBehaviour
         if (pool == null) Init();
 
         pool.ReleaseAllPool();
-        radiusToLengthRatio = 1f / lengthToRadiusRatio;
+        radiusToLengthRatio = 1f / lengthToRadiusRatio; // Defines inverse of lengthToRadiusRatio for future use.
 
         SpawnLines(minDepth, maxDepth);
     }
@@ -98,8 +100,9 @@ public class LineFractal : MonoBehaviour
     }
 
     /// <summary>
-    /// Instantiates fractal objects up to specified depth.
+    /// Instantiates fractal objects between <paramref name="minDepth"/> and <paramref name="maxDepth"/>.
     /// </summary>
+    /// <param name="minDepth"></param>
     /// <param name="maxDepth"></param>
     public void SpawnLines(int minDepth, int maxDepth)
     {
@@ -129,6 +132,10 @@ public class LineFractal : MonoBehaviour
     /// <returns></returns>
     public Quaternion Rotation(int currentDepth)
     {
+        if (currentDepth % skipStep == 0 && skipStep != 0)
+        {
+            return Quaternion.identity;
+        }
         return MathUtils.QuatPow(rotationModifier, currentDepth);
     }
 
