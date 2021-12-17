@@ -60,7 +60,7 @@ public class LineFractal : MonoBehaviour
     {
         if (pool == null) Init();
 
-        pool.ReleaseAllPool();
+        pool.ReleaseAllPool(); // make all pool object segments available for use.
         radiusToLengthRatio = 1f / lengthToRadiusRatio; // Defines inverse of lengthToRadiusRatio for future use.
 
         SpawnLines(minDepth, maxDepth);
