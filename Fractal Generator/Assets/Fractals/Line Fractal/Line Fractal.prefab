@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79d149ac042cf847b4799c362293e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineObject: {fileID: 5751584903714172236, guid: 2e2075abef1eb3d4baaa573f9ed557ed, type: 3}
+  lineObject: {fileID: 5202215416268214374, guid: 2e2075abef1eb3d4baaa573f9ed557ed, type: 3}
+  poolSize: 100
+  minDepth: 0
   maxDepth: 100
-  lengthScalar: 0.75
-  radiusScalar: 0.75
-  offsetDirectionMultiplier: {x: 1, y: 0, z: 0}
-  offsetDirectionAdditive: {x: 0, y: 0, z: 0}
-  scaleMultiplier: {x: 1, y: 1, z: 1}
-  rotationModifier: {x: 0, y: 0, z: 0.38268346, w: 0.9238795}
+  lengthToRadiusRatio: 2
+  lengthScalar: 0.9
+  radiusScalar: 0.9
+  rotationModifier: {x: 0.04663942, y: 0.0055538584, z: 0.25779802, w: 0.96505654}
+  skipStep: 1

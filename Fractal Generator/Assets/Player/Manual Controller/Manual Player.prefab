@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2245755510422905937
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   maxMoveSpeed: 10
   fieldOfView: 60
   lookSensitivity: 10
-  xLookClamping: 1
+  xLookClamping: 0
   tiltSpeed: 10
 --- !u!114 &-610100459660658157
 MonoBehaviour:
