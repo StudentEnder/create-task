@@ -132,7 +132,7 @@ public class LineFractal : MonoBehaviour
     /// <returns></returns>
     public Quaternion Rotation(int currentDepth)
     {
-        if (currentDepth % skipStep == 0 && skipStep != 0)
+        if (currentDepth % skipStep == 0 && skipStep != 1)
         {
             return Quaternion.identity;
         }
