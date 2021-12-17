@@ -46,7 +46,7 @@ public class LineFractal : MonoBehaviour
     /// </summary>
     public void Init()
     {
-        if (pool != null) Dispose(); // If pool already exists, empty before initialization.
+        if (pool != null) Dispose(); // If pool already exists, empty it before initialization.
 
         pool = new Pool<LengthCapsule>(lineObject, poolSize, transform);
     }
@@ -113,12 +113,14 @@ public class LineFractal : MonoBehaviour
     }
 
     /// <summary>
-    /// Instantiates a single fractal object at the specified depth
+    /// Instantiates a single fractal segment at the specified depth
     /// </summary>
     /// <param name="depth">Depth to spawn fractal object at</param>
     public void SpawnLine(int depth)
     {
-        LengthCapsule newLine = pool.Get();
+        // access elements from pool Queue, enabling it and removing it from the Queue.
+        LengthCapsule newLine = pool.Get(); 
+        // apply user parameters to the fractal segment.
         newLine.transform.localPosition = Offset(depth);
         newLine.transform.localRotation = Rotation(depth);
         newLine.SetLength(Length(depth));

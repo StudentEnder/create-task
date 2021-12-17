@@ -47,7 +47,7 @@ public class Pool<T> where T: PooledItem
     /// </summary>
     /// <param name="prefab">The prefab to instantiate from. Must be <see cref="PooledItem"/></param>
     /// <param name="poolSize">The amount of objects to store in the pool.</param>
-    /// <param name="parentTransform">The parent to initialize the holder gameobject under.</param>
+    /// <param name="parent">The parent transform to initialize the holder gameobject under.</param>
     public Pool(T prefab, int poolSize, Transform parent)
     {
         this.prefab = prefab;
