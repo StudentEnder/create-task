@@ -9,6 +9,9 @@ public class LineFractal : MonoBehaviour
     [Tooltip("Amount of objects to pool in object pooler")]
     public int poolSize = 100;
 
+    [SerializeField]
+    private LineFractalGenerator fractalGenerator;
+
     // Variables
 
     [Header("Depth:")]
