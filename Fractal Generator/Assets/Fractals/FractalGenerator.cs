@@ -7,6 +7,13 @@ public abstract class FractalGenerator
     protected int depth = 0;
     protected FractalAtDepth previousDepthData;
 
+    protected FractalGenerator() { } // prevent construction because it's used as serializable with Unity.
+
+    /// <summary>
+    /// Call Init before the generator is used.
+    /// </summary>
+    public abstract void Init();
+
     /// <summary>
     /// Increments depth data by <paramref name="depthsForward"/> depths.
     /// </summary>

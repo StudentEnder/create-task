@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Data for a fractal at a single depth. Stores a depth with <see cref="FractalSegment"/>(s)
 /// </summary>
-public struct FractalAtDepth
+public class FractalAtDepth
 {
     
     public int depth;
@@ -32,42 +32,47 @@ public struct FractalAtDepth
 /// <summary>
 /// Data for a single fractal segment, with a prefab, position, rotation, and scale.
 /// </summary>
-public struct FractalSegment
+public class FractalSegment
 {
-    public GameObject prefab;
+    public GameObject Prefab { get; set; }
     // transform data
-    public Vector3 position;
-    public Quaternion rotation;
-    public Vector3 scale;
+    public Vector3 Position { get; set; }
+    public Quaternion Rotation { get; set; }
+    public Vector3 Scale { get; set; }
+
+    /// <summary>
+    /// Empty construction. Make sure to set values if used.
+    /// </summary>
+    public FractalSegment() { } 
 
     public FractalSegment(GameObject prefab, Vector3 position, Quaternion rotation, Vector3 scale)
     {
-        this.prefab = prefab;
+        Prefab = prefab;
 
-        this.position = position;
-        this.rotation = rotation;
-        this.scale = scale;
+        Position = position;
+        Rotation = rotation;
+        Scale = scale;
     }
 
     public FractalSegment(GameObject prefab, Transform transform)
     {
-        this.prefab = prefab;
+        Prefab = prefab;
 
-        position = transform.localPosition;
-        rotation = transform.localRotation;
-        scale = transform.localScale;
+        Position = transform.localPosition;
+        Rotation = transform.localRotation;
+        Scale = transform.localScale;
     }
 
     /// <summary>
-    /// Segment with empty data
+    /// FractalSegment with default starting values.
     /// </summary>
     /// <param name="prefab"></param>
     public FractalSegment(GameObject prefab)
     {
-        this.prefab = prefab;
+        Prefab = prefab;
 
-        position = Vector3.zero;
-        rotation = Quaternion.identity;
-        scale = Vector3.zero;
+        Position = Vector3.zero;
+        Rotation = Quaternion.identity;
+        Scale = Vector3.one;
     }
 }

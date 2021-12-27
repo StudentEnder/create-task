@@ -18,7 +18,6 @@ public class LineFractalGenerator : FractalGenerator
     [Header("Scaling:")]
     [Tooltip("Ratio between length and radius of the capsules.")]
     public float lengthToRadiusRatio = 1f;
-    private float radiusToLengthRatio = 1f;
     [Tooltip("Length scalar applied to each depth relative to prior depth.")]
     public float lengthScalar = 1f;
     [Tooltip("Radius scalar applied to each depth relative to prior depth.")]
@@ -32,121 +31,83 @@ public class LineFractalGenerator : FractalGenerator
 
     [Header("Branching")]
     [Tooltip("How many fractal branches to create at each depth.")]
-    public int branchAmount = 1;
+    public int branchesEachStep = 1;
+
+    private LineFractalSegment nextSegment; // saved to avoid construction when incrementing.
+
+    public override void Init()
+    {
+        nextSegment = new LineFractalSegment();
+
+        // always start with just one segment.
+        previousDepthData = new FractalAtDepth(0, new LineFractalSegment(lineObject, lengthToRadiusRatio, 1f / lengthToRadiusRatio));
+    }
 
     public override FractalAtDepth IncrementDepth()
     {
-        FractalAtDepth nextFractal;
-        nextFractal.depth = previousDepthData.depth + 1; // increment depth value.
-
+        depth++;
         // increment segment(s)
-        FractalSegment[] nextSegments = new FractalSegment[branchAmount];
-        for (int i = 0; i < branchAmount; i++)
+        LineFractalSegment[] nextSegments = new LineFractalSegment[branchesEachStep];
+
+        // TODO: Branching currently won't work because everything is still the same per branch, and there are no 'branching points'. Implement branching correctly.
+        for (int i = 0; i < branchesEachStep; i++)
         {
-            FractalSegment prevSegment = previousDepthData.fractalSegments[i];
-            FractalSegment nextSegment;
+            LineFractalSegment prevSegment = (LineFractalSegment)previousDepthData.fractalSegments[i];
 
-            nextSegment.position = IncrementOffset(prevSegment);
-            nextSegment.rotation = IncrementRotation(prevSegment);
-            nextSegment.scale = prevSegment.scale; // Not currently changing scale
+            nextSegment.Prefab = lineObject;
+            nextSegment.Length = IncrementLength(prevSegment);
+            nextSegment.Radius = IncrementRadius(prevSegment);
 
-            nextSegments[i] = prevSegment;
+            nextSegment.Rotation = IncrementRotation(prevSegment);
+            nextSegment.Scale = IncrementScale(prevSegment);
+
+            nextSegment.Position = IncrementPosition(prevSegment, nextSegment);
+
+            nextSegments[i] = nextSegment;
         }
-        nextFractal.fractalSegments = nextSegments;
+
+        FractalAtDepth nextFractal = new FractalAtDepth(depth, nextSegments);
 
         previousDepthData = nextFractal; // update previous depth's data to be current depth's data.
         return nextFractal;
     }
 
-    private Quaternion IncrementRotation(FractalSegment prevSegment)
-    {
-        return prevSegment.rotation * rotationModifier;
-    }
-
-    private Vector3 IncrementOffset(FractalSegment prevSegment)
-    {
-        return Vector3.zero;
-    }
-
-    private float IncrementLength(FractalSegment prevSegment)
-    {
-        return 0;
-    }
-
-    private float IncrementRadius(FractalSegment prevSegment)
-    {
-        return 0;
-    }
-
-    private Vector3 IncrementVector(FractalSegment prevSegment)
-    {
-        return Vector3.zero;
-    }
-
-
     /// <summary>
-    /// Returns rotation of object for specified depth.
+    /// The incremented position of the segment. <br />
+    /// Requires <paramref name="currentSegment"/>, so this should be called after calculating <see cref="IncrementLength(LineFractalSegment)">Length</see>, <see cref="IncrementRotation(LineFractalSegment)">Rotation</see>, and <see cref="IncrementScale(LineFractalSegment)">Scale</see>.
     /// </summary>
-    /// <param name="currentDepth">The depth to calculate rotation for.</param>
-    public Quaternion Rotation(int currentDepth)
-    {
-        if (skipStep != 0 && currentDepth % skipStep == 0) // skip a depth's rotation
-        {
-            return Quaternion.identity;
-        }
-        return MathUtils.QuatPow(rotationModifier, currentDepth);
-    }
-
-    /// <summary>
-    /// Returns length of object at specified depth.
-    /// </summary>
-    /// <param name="currentDepth"></param>
+    /// <param name="prevSegment"></param>
+    /// <param name="currentSegment"></param>
     /// <returns></returns>
-    public float Length(int currentDepth)
+    private Vector3 IncrementPosition(LineFractalSegment prevSegment, LineFractalSegment currentSegment)
     {
-        return lengthToRadiusRatio * Mathf.Pow(lengthScalar, currentDepth);
+        // TODO: Test Scale. Is x the correct scale component of the vector's magnitude?
+        // direction and magnitude of objects.
+        Vector3 segmentVector = currentSegment.Rotation * Vector3.right * (currentSegment.Length * currentSegment.Scale.x);
+
+        // Efficiency: don't need to calculate this twice per depth because each depth's vector is already calculated above.
+        // TODO replace this calculation with a call to cached vector in the previous segment's object.
+        Vector3 prevSegmentVector = currentSegment.Rotation * Vector3.right * (currentSegment.Length * currentSegment.Scale.x); 
+        return .5f * (prevSegmentVector + segmentVector);
     }
 
-    /// <summary>
-    /// Returns radius of object at specified depth.
-    /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
-    public float Radius(int currentDepth)
+    private Quaternion IncrementRotation(LineFractalSegment prevSegment)
     {
-        return radiusToLengthRatio * Mathf.Pow(radiusScalar, currentDepth);
+        return prevSegment.Rotation * rotationModifier;
     }
 
-    /// <summary>
-    /// Returns vector of an object at specified depth, combining direction and magnitude of the object.
-    /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
-    public Vector3 Vector(int currentDepth)
+    private Vector3 IncrementScale(LineFractalSegment prevSegment)
     {
-        Vector3 vector = Vector3.right;
-        vector = Rotation(currentDepth) * vector;
-        vector *= Length(currentDepth);
-
-        return vector;
+        return prevSegment.Scale;
     }
 
-    /// <summary>
-    /// Returns centered position of object at specified depth.
-    /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
-    public Vector3 Offset(int currentDepth)
+    private float IncrementLength(LineFractalSegment prevSegment)
     {
-        Vector3 offset = Vector3.zero;
-        if (currentDepth != 0)
-        {
-            for (int depth = 0; depth < currentDepth; depth++)
-            {
-                offset += .5f * (Vector(depth) + Vector(depth + 1));
-            }
+        return prevSegment.Length * lengthScalar;
+    }
 
-        }
-        return offset;
+    private float IncrementRadius(LineFractalSegment prevSegment)
+    {
+        return prevSegment.Radius * radiusScalar;
     }
 }
