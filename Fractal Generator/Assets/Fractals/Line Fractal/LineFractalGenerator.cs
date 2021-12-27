@@ -88,7 +88,7 @@ public class LineFractalGenerator : FractalGenerator
 
         // Efficiency: don't need to calculate this twice per depth because each depth's vector is already calculated above.
         // TODO replace this calculation with a call to cached vector in the previous segment's object.
-        Vector3 prevSegmentVector = currentSegment.Rotation * Vector3.right * (currentSegment.Length * currentSegment.Scale.x); 
+        Vector3 prevSegmentVector = prevSegment.Rotation * Vector3.right * (prevSegment.Length * prevSegment.Scale.x); 
         return .5f * (prevSegmentVector + segmentVector);
     }
 
