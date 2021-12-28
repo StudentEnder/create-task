@@ -37,6 +37,7 @@ public class LineFractalGenerator : FractalGenerator
     public override void Init()
     {
         nextSegment = new LineFractalSegment();
+        depth = 0;
 
         // always start with just one segment.
         // Length set to the lengthToRadiusRatio, and radius set to 1, because lengthToRadiusRatio assumes a radius of 1.
