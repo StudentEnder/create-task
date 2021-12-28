@@ -101,10 +101,8 @@ public class LineFractal : MonoBehaviour
 
             SpawnData(generator.IncrementForward(minDepth)); // generate data up to minDepth, and spawn the fractal at that depth.
 
-            // TODO test off by one error. Is depth correct? We want to spawn the first segment at minDepth, while keeping depth counter correct.
-            // Intended spawning: minDepth is inclusive, maxDepth is (?) 
-
-            for (int depth = minDepth; depth < maxDepth; depth++)
+            // Intended spawning: minDepth is inclusive, maxDepth is exclusive
+            for (int depth = minDepth; depth < maxDepth-1; depth++)
             {
                 SpawnData(generator.IncrementDepth()); // increment the data and spawn it.
             }
