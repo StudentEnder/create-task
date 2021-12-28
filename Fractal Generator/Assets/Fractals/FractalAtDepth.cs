@@ -12,8 +12,6 @@ public class FractalAtDepth
 
     public FractalSegment[] fractalSegments;
 
-    //public static FractalAtDepth zero = 
-
     public FractalAtDepth(int depth, FractalSegment[] fractalSegments)
     {
         this.depth = depth;
