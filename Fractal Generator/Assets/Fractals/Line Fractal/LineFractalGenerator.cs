@@ -32,12 +32,12 @@ public class LineFractalGenerator : FractalGenerator
     [Min(0)]
     public int branchIncrement = 10;
 
-    private LineFractalSegment nextSegment; // saved to avoid construction when incrementing.
+    private LineFractalSegment currentSegment; // saved to avoid construction when incrementing.
 
     public override void Init()
     {
-        nextSegment = new LineFractalSegment();
         depth = 0;
+        currentSegment = new LineFractalSegment();
 
         // always start with just one segment.
         // Length set to the lengthToRadiusRatio, and radius set to 1, because lengthToRadiusRatio assumes a radius of 1.
@@ -49,7 +49,7 @@ public class LineFractalGenerator : FractalGenerator
     {
         depth++;
         // increment segment(s)
-        LineFractalSegment[] nextSegments = new LineFractalSegment[branchesEachSplit];
+        LineFractalSegment[] currentSegments = new LineFractalSegment[branchesEachSplit];
 
         // TODO: Branching currently won't work because everything is still the same per branch, and there are no 'branching points'. Implement branching correctly.
         for (int i = 0; i < branchesEachSplit; i++)
@@ -57,22 +57,23 @@ public class LineFractalGenerator : FractalGenerator
             // TODO test this cast. If polymorphism doesn't work like this (maintaining data), then make FractalAtDepth generic, taking LineFractalSegment as the specified type.
             LineFractalSegment prevSegment = (LineFractalSegment)previousDepthData.fractalSegments[i];
 
-            nextSegment.Prefab = lineObject;
-            nextSegment.Length = IncrementLength(prevSegment);
-            nextSegment.Radius = IncrementRadius(prevSegment);
+            currentSegment.Prefab = lineObject;
 
-            nextSegment.Rotation = IncrementRotation(prevSegment);
-            nextSegment.Scale = IncrementScale(prevSegment);
+            currentSegment.Length = IncrementLength(prevSegment);
+            currentSegment.Radius = IncrementRadius(prevSegment);
 
-            nextSegment.Position = IncrementPosition(prevSegment, nextSegment);
+            currentSegment.Rotation = IncrementRotation(prevSegment);
+            currentSegment.Scale = IncrementScale(prevSegment);
 
-            nextSegments[i] = nextSegment;
+            currentSegment.Position = IncrementPosition(prevSegment, currentSegment);
+
+            currentSegments[i] = currentSegment;
         }
 
-        FractalAtDepth nextFractal = new FractalAtDepth(depth, nextSegments);
+        FractalAtDepth currentFractal = new FractalAtDepth(depth, currentSegments);
 
-        previousDepthData = nextFractal; // update previous depth's data to be current depth's data.
-        return nextFractal;
+        previousDepthData = currentFractal; // update previous depth's data to be current depth's data.
+        return currentFractal;
     }
 
     /// <summary>
