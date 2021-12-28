@@ -54,7 +54,6 @@ public class LineFractalGenerator : FractalGenerator
         // TODO: Branching currently won't work because everything is still the same per branch, and there are no 'branching points'. Implement branching correctly.
         for (int i = 0; i < branchesEachSplit; i++)
         {
-            // TODO test this cast. If polymorphism doesn't work like this (maintaining data), then make FractalAtDepth generic, taking LineFractalSegment as the specified type.
             LineFractalSegment prevSegment = (LineFractalSegment)previousDepthData.fractalSegments[i];
 
             currentSegment.Prefab = lineObject;
