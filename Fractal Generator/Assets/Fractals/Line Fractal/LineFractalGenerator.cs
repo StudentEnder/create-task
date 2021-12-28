@@ -85,27 +85,13 @@ public class LineFractalGenerator : FractalGenerator
     /// <returns>Position coordinates in absolute space.</returns>
     private Vector3 IncrementPosition(LineFractalSegment prevSegment, LineFractalSegment currentSegment)
     {
-        // TODO: Test Scale. Is x the correct scale component of the vector's magnitude?
-        // direction and magnitude of objects.
-        //Vector3 segmentVector = currentSegment.Rotation * Vector3.right * (currentSegment.Length * currentSegment.Scale.x);
+        // Magnitude and direction of each segment. (Vectors)
+        Vector3 prevSegmentVector = prevSegment.Length * prevSegment.Scale.x * (prevSegment.Rotation * Vector3.right);
+        Vector3 currentSegmentVector = currentSegment.Length * currentSegment.Scale.x * (currentSegment.Rotation * Vector3.right);
 
-        // Efficiency: don't need to calculate this twice per depth because each depth's vector is already calculated above.
-        // TODO replace this calculation with a call to cached vector in the previous segment's object.
-        //Vector3 prevSegmentVector = prevSegment.Rotation * Vector3.right * (prevSegment.Length * prevSegment.Scale.x);
+        Vector3 prevSegmentEndPoint = prevSegment.Position + prevSegmentVector * .5f;
+        Vector3 currentSegmentMiddlePoint = prevSegmentEndPoint + currentSegmentVector * .5f;
 
-        // the true lengths of each segment, taking into account their length value and scale.
-        float prevSegmentTrueLength = prevSegment.Length * prevSegment.Scale.x;
-        float currentSegmentTrueLength = currentSegment.Length * currentSegment.Scale.x;
-
-        // TODO check this math
-
-        // Unity spawns objects from their center, requiring the offset of half the object's length. 
-        // Math for each:
-        // Initial position + (half object length * rotation from x)
-        // Initial position + object vector
-        // Final position.
-        Vector3 prevSegmentEndPoint = prevSegment.Position + (.5f * prevSegmentTrueLength * (prevSegment.Rotation * Vector3.right));
-        Vector3 currentSegmentMiddlePoint = prevSegmentEndPoint + (.5f * currentSegmentTrueLength * (currentSegment.Rotation * Vector3.right));
         return currentSegmentMiddlePoint;
     }
 
