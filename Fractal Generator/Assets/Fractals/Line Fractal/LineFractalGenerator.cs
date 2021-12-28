@@ -67,7 +67,7 @@ public class LineFractalGenerator : FractalGenerator
 
             currentSegment.Position = IncrementPosition(prevSegment, currentSegment);
 
-            currentSegments[i] = currentSegment;
+            currentSegments[i] = currentSegment.Copy(); // This copy is very necessary. Do NOT assign with old references.
         }
 
         FractalAtDepth currentFractal = new FractalAtDepth(depth, currentSegments);

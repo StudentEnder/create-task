@@ -73,4 +73,9 @@ public class FractalSegment
         Rotation = Quaternion.identity;
         Scale = Vector3.one;
     }
+
+    public FractalSegment Copy()
+    {
+        return new FractalSegment(Prefab, Position, Rotation, Scale);
+    }
 }

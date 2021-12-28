@@ -46,4 +46,9 @@ public class LineFractalSegment : FractalSegment
         Radius = radius;
     }
 
+    public new LineFractalSegment Copy()
+    {
+        return new LineFractalSegment(Prefab, Position, Rotation, Scale, Length, Radius);
+    }
+
 }
