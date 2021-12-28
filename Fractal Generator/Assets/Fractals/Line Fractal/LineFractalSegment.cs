@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class LineFractalSegment : FractalSegment
 {
+    /// <summary>
+    /// The length of the segment.
+    /// </summary>
     public float Length { get; set; }
 
+    /// <summary>
+    /// The radius of the segment.
+    /// </summary>
     public float Radius { get; set; }
 
     /// <summary>
@@ -100,6 +106,10 @@ public class LineFractalSegment : FractalSegment
         Vector = Length * Scale.x * (Rotation * Vector3.right);
     }
 
+    /// <summary>
+    /// Copies the object's values into a new LineFractalSegment.
+    /// </summary>
+    /// <returns>Returns the new LineFractalSegment.</returns>
     public new LineFractalSegment Copy()
     {
         return new LineFractalSegment(Prefab, Position, Rotation, Scale, Length, Radius, Vector);
