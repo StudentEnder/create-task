@@ -3,16 +3,13 @@ using UnityEngine;
 
 public class LineFractal : MonoBehaviour
 {
+    public bool useNewGenerator = false;
+
     public LengthCapsule lineObject;
 
     private Pool<LengthCapsule> pool;
     [Tooltip("Amount of objects to pool in object pooler")]
     public int poolSize = 100;
-
-    [SerializeField]
-    private LineFractalGenerator fractalGenerator;
-
-    // Variables
 
     [Header("Depth:")]
     [Tooltip("Starting depth to spawn objects.")]
@@ -20,20 +17,9 @@ public class LineFractal : MonoBehaviour
     [Tooltip("Ending depth to spawn objects.")]
     public int maxDepth = 1;
 
-    [Header("Scaling:")]
-    [Tooltip("Ratio between length and radius of the capsules.")]
-    public float lengthToRadiusRatio = 1f;
-    private float radiusToLengthRatio = 1f;
-    [Tooltip("Length scalar applied to each depth relative to prior depth.")]
-    public float lengthScalar = 1f;
-    [Tooltip("Radius scalar applied to each depth relative to prior depth.")]
-    public float radiusScalar = 1f;
+    [SerializeField]
+    private LineFractalGenerator generator;
 
-    [Header("Rotation values:")]
-    [Tooltip("Rotation applied to each depth relative to prior depth.")]
-    public Quaternion rotationModifier;
-    [Tooltip("Sets custom rotation of every Nth depth.")]
-    public int skipStep = 1;
 
     /// <summary>
     /// Dispose the object pooler and its reference.
@@ -49,9 +35,10 @@ public class LineFractal : MonoBehaviour
     /// </summary>
     public void Init()
     {
+        // Initialize the pool
         if (pool != null) Dispose(); // If pool already exists, empty it before initialization.
-
         pool = new Pool<LengthCapsule>(lineObject, poolSize, transform);
+
     }
 
     // TODO remake Start (or OnEnable) to respect the editor buttons when in the editor, and Generate when in a build.
@@ -64,7 +51,7 @@ public class LineFractal : MonoBehaviour
         if (pool == null) Init();
 
         pool.ReleaseAllPool(); // make all pool object segments available for use.
-        radiusToLengthRatio = 1f / lengthToRadiusRatio; // Defines inverse of lengthToRadiusRatio for future use.
+        //radiusToLengthRatio = 1f / lengthToRadiusRatio; // Defines inverse of lengthToRadiusRatio for future use.
 
         SpawnLines(minDepth, maxDepth);
     }
@@ -108,11 +95,55 @@ public class LineFractal : MonoBehaviour
     /// <param name="maxDepth"></param>
     public void SpawnLines(int minDepth, int maxDepth)
     {
-        for (int depth = minDepth; depth < maxDepth; depth++)
+        if (useNewGenerator)
         {
-            SpawnLine(depth);
+            generator.Init(); // Initialize the fractal generator
+            generator.IncrementForward(minDepth); // generate data up to minDepth
+
+            for (int depth = minDepth; depth < maxDepth; depth++)
+            {
+                SpawnData(generator.IncrementDepth()); // increment the data and spawn it.
+            }
+        } else
+        {
+            for (int depth = minDepth; depth < maxDepth; depth++)
+            {
+                SpawnLine(depth); // spawn a line using old calculations at each depth.
+            }
         }
     }
+
+    public void SpawnData(FractalAtDepth fractalAtDepth)
+    {
+        foreach(FractalSegment segment in fractalAtDepth.fractalSegments)
+        {
+            LengthCapsule newLine = pool.Get(); // This pool currently ignores the gameobject saved in the segment. TODO somehow allow variable prefab spawning, but with a pool?
+            newLine.transform.localPosition = segment.Position;
+            newLine.transform.localRotation = segment.Rotation;
+
+            // TODO make LineFractal behavior generic, with the Length/Line subtypes specifiable, avoiding these casts and making this more reusable.
+            newLine.SetLength(((LineFractalSegment)segment).Length);
+            newLine.SetRadius(((LineFractalSegment)segment).Length);
+        }
+    }
+
+    
+    [Header("OLD CALCULATIONS")]
+    [Header("Scaling:")]
+    [Tooltip("Ratio between length and radius of the capsules.")]
+    public float lengthToRadiusRatio = 1f;
+    private float radiusToLengthRatio = 1f;
+    [Tooltip("Length scalar applied to each depth relative to prior depth.")]
+    public float lengthScalar = 1f;
+    [Tooltip("Radius scalar applied to each depth relative to prior depth.")]
+    public float radiusScalar = 1f;
+
+    [Header("Rotation values:")]
+    [Tooltip("Rotation applied to each depth relative to prior depth.")]
+    public Quaternion rotationModifier;
+    [Tooltip("Sets custom rotation of every Nth depth.")]
+    public int skipStep = 1;
+
 
     /// <summary>
     /// Instantiates a single fractal segment at the specified depth
@@ -195,4 +226,3 @@ public class LineFractal : MonoBehaviour
         return offset;
     }
 }
-   

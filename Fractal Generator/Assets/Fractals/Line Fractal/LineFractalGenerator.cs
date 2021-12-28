@@ -9,12 +9,6 @@ public class LineFractalGenerator : FractalGenerator
 
     public GameObject lineObject;
 
-    [Header("Depth:")]
-    [Tooltip("Starting depth to spawn objects.")]
-    public int minDepth = 0;
-    [Tooltip("Ending depth to spawn objects.")]
-    public int maxDepth = 1;
-
     [Header("Scaling:")]
     [Tooltip("Ratio between length and radius of the capsules.")]
     public float lengthToRadiusRatio = 1f;
@@ -29,9 +23,13 @@ public class LineFractalGenerator : FractalGenerator
     [Tooltip("Sets custom rotation of every Nth depth.")]
     public int skipStep = 1;
 
-    [Header("Branching")]
-    [Tooltip("How many fractal branches to create at each depth.")]
-    public int branchesEachStep = 1;
+    [Header("Branching: (INCOMPLETE)")]
+    [Tooltip("How many fractal branches to create at each branch point. 1 causes no branching.")]
+    [Min(1)]
+    public int branchesEachSplit = 1;
+    [Tooltip("How many segments spawn between the start of each branch. 0 causes no branching. 1 causes branching at every segment.")]
+    [Min(0)]
+    public int branchIncrement = 10;
 
     private LineFractalSegment nextSegment; // saved to avoid construction when incrementing.
 
@@ -47,10 +45,10 @@ public class LineFractalGenerator : FractalGenerator
     {
         depth++;
         // increment segment(s)
-        LineFractalSegment[] nextSegments = new LineFractalSegment[branchesEachStep];
+        LineFractalSegment[] nextSegments = new LineFractalSegment[branchesEachSplit];
 
         // TODO: Branching currently won't work because everything is still the same per branch, and there are no 'branching points'. Implement branching correctly.
-        for (int i = 0; i < branchesEachStep; i++)
+        for (int i = 0; i < branchesEachSplit; i++)
         {
             // TODO test this cast. If polymorphism doesn't work like this (maintaining data), then make FractalAtDepth generic, taking LineFractalSegment as the specified type.
             LineFractalSegment prevSegment = (LineFractalSegment)previousDepthData.fractalSegments[i];
@@ -88,7 +86,9 @@ public class LineFractalGenerator : FractalGenerator
 
         // Efficiency: don't need to calculate this twice per depth because each depth's vector is already calculated above.
         // TODO replace this calculation with a call to cached vector in the previous segment's object.
-        Vector3 prevSegmentVector = prevSegment.Rotation * Vector3.right * (prevSegment.Length * prevSegment.Scale.x); 
+        Vector3 prevSegmentVector = prevSegment.Rotation * Vector3.right * (prevSegment.Length * prevSegment.Scale.x);
+        
+        // TODO check this math
         return .5f * (prevSegmentVector + segmentVector);
     }
 

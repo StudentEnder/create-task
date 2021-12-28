@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class FractalGenerator
 {
     protected int depth = 0;
@@ -15,13 +16,15 @@ public abstract class FractalGenerator
     public abstract void Init();
 
     /// <summary>
-    /// Increments depth data by <paramref name="depthsForward"/> depths.
+    /// Increments forward <paramref name="depthsForward"/> depths, essentially skipping in-between depths.
     /// </summary>
     /// <param name="depthsForward"></param>
-    /// <returns>Returns the final depth</returns>
-    /// 
-    public FractalAtDepth IncrementDepth(int depthsForward)
+    /// <returns>Returns the resulting data at the end of the increments.</returns>
+    public FractalAtDepth IncrementForward(int depthsForward)
     {
+        if (depthsForward < 0) return null;
+        if (depthsForward == 0) return previousDepthData;
+
         FractalAtDepth fractal = IncrementDepth();
         for (int i = 1; i < depthsForward; i++)
         {
