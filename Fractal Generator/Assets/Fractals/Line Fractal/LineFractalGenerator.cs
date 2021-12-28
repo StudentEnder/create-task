@@ -77,7 +77,7 @@ public class LineFractalGenerator : FractalGenerator
     /// </summary>
     /// <param name="prevSegment"></param>
     /// <param name="currentSegment"></param>
-    /// <returns></returns>
+    /// <returns>Position coordinates in absolute space.</returns>
     private Vector3 IncrementPosition(LineFractalSegment prevSegment, LineFractalSegment currentSegment)
     {
         // TODO: Test Scale. Is x the correct scale component of the vector's magnitude?
