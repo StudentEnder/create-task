@@ -32,7 +32,7 @@ public class LineFractalGenerator : FractalGenerator
     [Min(0)]
     public int branchIncrement = 10;
 
-    private LineFractalSegment currentSegment; // saved to avoid construction when incrementing.
+    private LineFractalSegment currentSegment; // saved to avoid construction when incrementing. This may be useless due to needing to Copy anyway.
 
     public override void Init()
     {
