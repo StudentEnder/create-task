@@ -43,17 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79d149ac042cf847b4799c362293e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useNewGenerator: 0
+  useNewGenerator: 1
   lineObject: {fileID: 5202215416268214374, guid: 2e2075abef1eb3d4baaa573f9ed557ed, type: 3}
-  poolSize: 100
+  poolSize: 20
   minDepth: 0
   maxDepth: 20
   generator:
-    lineObject: {fileID: 0}
-    lengthToRadiusRatio: 2
-    lengthScalar: 0.9
-    radiusScalar: 0.9
-    rotationModifier: {x: 0, y: 0, z: 0, w: 0}
+    lineObject: {fileID: 5751584903714172236, guid: 2e2075abef1eb3d4baaa573f9ed557ed, type: 3}
+    lengthToRadiusRatio: 8
+    lengthScalar: 0.5
+    radiusScalar: 0.5
+    rotationModifier: {x: 0.3323714, y: 0.17302163, z: 0.20539987, w: 0.90410376}
     skipStep: 0
     branchesEachSplit: 1
     branchIncrement: 10
