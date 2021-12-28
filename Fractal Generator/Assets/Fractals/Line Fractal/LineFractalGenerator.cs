@@ -38,7 +38,9 @@ public class LineFractalGenerator : FractalGenerator
         nextSegment = new LineFractalSegment();
 
         // always start with just one segment.
-        previousDepthData = new FractalAtDepth(0, new LineFractalSegment(lineObject, lengthToRadiusRatio, 1f / lengthToRadiusRatio));
+        // Length set to the lengthToRadiusRatio, and radius set to 1, because lengthToRadiusRatio assumes a radius of 1.
+            // This results in a length:radius ratio of lengthToRadiusRatio:1
+        previousDepthData = new FractalAtDepth(0, new LineFractalSegment(lineObject, lengthToRadiusRatio, 1f));
     }
 
     public override FractalAtDepth IncrementDepth()

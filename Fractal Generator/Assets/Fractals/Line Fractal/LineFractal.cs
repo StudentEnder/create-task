@@ -127,7 +127,7 @@ public class LineFractal : MonoBehaviour
 
             // TODO make LineFractal behavior generic, with the Length/Line subtypes specifiable, avoiding these casts and making this more reusable.
             newLine.SetLength(((LineFractalSegment)segment).Length);
-            newLine.SetRadius(((LineFractalSegment)segment).Length);
+            newLine.SetRadius(((LineFractalSegment)segment).Radius);
         }
     }
 
