@@ -124,6 +124,7 @@ public class LineFractal : MonoBehaviour
             LengthCapsule newLine = pool.Get(); // This pool currently ignores the gameobject saved in the segment. TODO somehow allow variable prefab spawning, but with a pool?
             newLine.transform.localPosition = segment.Position;
             newLine.transform.localRotation = segment.Rotation;
+            newLine.transform.localScale = segment.Scale;
 
             // TODO make LineFractal behavior generic, with the Length/Line subtypes specifiable, avoiding these casts and making this more reusable.
             newLine.SetLength(((LineFractalSegment)segment).Length);
