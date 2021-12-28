@@ -20,14 +20,15 @@ public class LineFractalGenerator : FractalGenerator
     [Header("Rotation values:")]
     [Tooltip("Rotation applied to each depth relative to prior depth.")]
     public Quaternion rotationModifier;
-    [Tooltip("Sets custom rotation of every Nth depth.")]
-    public int skipStep = 1;
+    [Tooltip("Sets custom rotation of every Nth depth. 0 causes no custom rotation.")]
+    [Min(0)]
+    public int skipStep = 0;
 
     [Header("Branching: (INCOMPLETE)")]
     [Tooltip("How many fractal branches to create at each branch point. 1 causes no branching.")]
     [Min(1)]
     public int branchesEachSplit = 1;
-    [Tooltip("How many segments spawn between the start of each branch. 0 causes no branching. 1 causes branching at every segment.")]
+    [Tooltip("Creates branches every Nth depth. 0 causes no branching. 1 causes branching at every segment.")]
     [Min(0)]
     public int branchIncrement = 10;
 

@@ -16,7 +16,7 @@ public abstract class FractalGenerator
     public abstract void Init();
 
     /// <summary>
-    /// Increments forward <paramref name="depthsForward"/> depths, essentially skipping in-between depths.
+    /// Increments forward <paramref name="depthsForward"/> depths, effectively skipping in-between depths.
     /// </summary>
     /// <param name="depthsForward"></param>
     /// <returns>Returns the resulting data at the end of the increments.</returns>
