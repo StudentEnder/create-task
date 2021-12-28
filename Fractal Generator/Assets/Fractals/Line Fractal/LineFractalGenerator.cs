@@ -64,6 +64,7 @@ public class LineFractalGenerator : FractalGenerator
             currentSegment.Rotation = IncrementRotation(prevSegment);
             currentSegment.Scale = IncrementScale(prevSegment);
 
+            currentSegment.CalculateVector();
             currentSegment.Position = IncrementPosition(prevSegment, currentSegment);
 
             currentSegments[i] = currentSegment.Copy(); // This copy is very necessary. Do NOT assign with old references.
@@ -77,19 +78,15 @@ public class LineFractalGenerator : FractalGenerator
 
     /// <summary>
     /// The incremented position of the segment. <br />
-    /// Requires <paramref name="currentSegment"/>, so this should be called after calculating <see cref="IncrementLength(LineFractalSegment)">Length</see>, <see cref="IncrementRotation(LineFractalSegment)">Rotation</see>, and <see cref="IncrementScale(LineFractalSegment)">Scale</see>.
+    /// Requires <paramref name="currentSegment"/>'s Vector, so this should be called after calculating <see cref="IncrementLength(LineFractalSegment)">Length</see>, <see cref="IncrementRotation(LineFractalSegment)">Rotation</see>, and <see cref="IncrementScale(LineFractalSegment)">Scale</see>.
     /// </summary>
     /// <param name="prevSegment"></param>
     /// <param name="currentSegment"></param>
     /// <returns>Position coordinates in absolute space.</returns>
     private Vector3 IncrementPosition(LineFractalSegment prevSegment, LineFractalSegment currentSegment)
     {
-        // Magnitude and direction of each segment. (Vectors)
-        Vector3 prevSegmentVector = prevSegment.Length * prevSegment.Scale.x * (prevSegment.Rotation * Vector3.right);
-        Vector3 currentSegmentVector = currentSegment.Length * currentSegment.Scale.x * (currentSegment.Rotation * Vector3.right);
-
-        Vector3 prevSegmentEndPoint = prevSegment.Position + prevSegmentVector * .5f;
-        Vector3 currentSegmentMiddlePoint = prevSegmentEndPoint + currentSegmentVector * .5f;
+        Vector3 prevSegmentEndPoint = prevSegment.Position + prevSegment.Vector * .5f;
+        Vector3 currentSegmentMiddlePoint = prevSegmentEndPoint + currentSegment.Vector * .5f;
 
         return currentSegmentMiddlePoint;
     }
