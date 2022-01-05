@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class LineFractal : MonoBehaviour
 {
-    public bool useNewGenerator = false;
-
     public LengthCapsule lineObject;
 
     private Pool<LengthCapsule> pool;
@@ -95,23 +93,14 @@ public class LineFractal : MonoBehaviour
     /// <param name="maxDepth"></param>
     public void SpawnLines(int minDepth, int maxDepth)
     {
-        if (useNewGenerator)
-        {
-            generator.Init(); // Initialize the fractal generator
+        generator.Init(); // Initialize the fractal generator
 
-            SpawnData(generator.IncrementForward(minDepth)); // generate data up to minDepth, and spawn the fractal at that depth.
+        SpawnData(generator.IncrementForward(minDepth)); // generate data up to minDepth, and spawn the fractal at that depth.
 
-            // Intended spawning: minDepth is inclusive, maxDepth is exclusive
-            for (int depth = minDepth; depth < maxDepth-1; depth++)
-            {
-                SpawnData(generator.IncrementDepth()); // increment the data and spawn it.
-            }
-        } else
+        // Intended spawning: minDepth is inclusive, maxDepth is exclusive
+        for (int depth = minDepth; depth < maxDepth-1; depth++)
         {
-            for (int depth = minDepth; depth < maxDepth; depth++)
-            {
-                SpawnLine(depth); // spawn a line using old calculations at each depth.
-            }
+            SpawnData(generator.IncrementDepth()); // increment the data and spawn it.
         }
     }
 
@@ -128,104 +117,5 @@ public class LineFractal : MonoBehaviour
             newLine.SetLength(((LineFractalSegment)segment).Length);
             newLine.SetRadius(((LineFractalSegment)segment).Radius);
         }
-    }
-
-    
-    [Header("OLD CALCULATIONS")]
-    [Header("Scaling:")]
-    [Tooltip("Ratio between length and radius of the capsules.")]
-    public float lengthToRadiusRatio = 1f;
-    private float radiusToLengthRatio = 1f;
-    [Tooltip("Length scalar applied to each depth relative to prior depth.")]
-    public float lengthScalar = 1f;
-    [Tooltip("Radius scalar applied to each depth relative to prior depth.")]
-    public float radiusScalar = 1f;
-
-    [Header("Rotation values:")]
-    [Tooltip("Rotation applied to each depth relative to prior depth.")]
-    public Quaternion rotationModifier;
-    [Tooltip("Sets custom rotation of every Nth depth.")]
-    public int skipStep = 1;
-
-
-    /// <summary>
-    /// Instantiates a single fractal segment at the specified depth
-    /// </summary>
-    /// <param name="depth">Depth to spawn fractal object at</param>
-    public void SpawnLine(int depth)
-    {
-        // access elements from pool Queue, enabling it and removing it from the Queue.
-        LengthCapsule newLine = pool.Get(); 
-        // apply user parameters to the fractal segment.
-        newLine.transform.localPosition = Offset(depth);
-        newLine.transform.localRotation = Rotation(depth);
-        newLine.SetLength(Length(depth));
-        newLine.SetRadius(Radius(depth));
-    }
-    
-    /// <summary>
-    /// Returns rotation of object for specified depth.
-    /// </summary>
-    /// <param name="currentDepth">The depth to calculate rotation for.</param>
-    public Quaternion Rotation(int currentDepth)
-    {
-        if (skipStep != 0 && currentDepth % skipStep == 0) // skip a depth's rotation
-        {
-            return Quaternion.identity;
-        }
-        return MathUtils.QuatPow(rotationModifier, currentDepth);
-    }
-
-    /// <summary>
-    /// Returns length of object at specified depth.
-    /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
-    public float Length(int currentDepth)
-    {
-        return lengthToRadiusRatio * Mathf.Pow(lengthScalar, currentDepth);
-    }
-
-    /// <summary>
-    /// Returns radius of object at specified depth.
-    /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
-    public float Radius(int currentDepth)
-    {
-        return radiusToLengthRatio * Mathf.Pow(radiusScalar, currentDepth);
-    }
-
-    /// <summary>
-    /// Returns vector of an object at specified depth, combining direction and magnitude of the object.
-    /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
-    public Vector3 Vector(int currentDepth)
-    {
-        Vector3 vector = Vector3.right;
-        vector = Rotation(currentDepth) * vector;
-        vector *= Length(currentDepth);
-
-        return vector;
-    }
-
-    /// <summary>
-    /// Returns centered position of object at specified depth.
-    /// </summary>
-    /// <param name="currentDepth"></param>
-    /// <returns></returns>
-    public Vector3 Offset(int currentDepth)
-    {
-        Vector3 offset = Vector3.zero;
-        if (currentDepth != 0)
-        {
-            for (int depth = 0; depth < currentDepth; depth++)
-            {
-                offset += .5f * (Vector(depth) + Vector(depth + 1));
-            }
-
-        }
-        return offset;
     }
 }
